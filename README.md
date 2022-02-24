@@ -1,5 +1,7 @@
 # Hi!
 
+---
+
 E-Mail: kontakt@tgerber.net
 
-GitHub: [Fl1tzi](github.com/Fl1tzi)
+GitHub: [Fl1tzi](http://github.com/Fl1tzi)
