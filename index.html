@@ -1,30 +1,71 @@
-<html><head></head><body style="margin: 0;">
-  <h2 id="rounded-corners" style="text-align: center; color: white;"><strong><code>tgerber.net</code></strong></h2>
-<p>&nbsp;</p>
-  <div id="div" style="border: 5px;">
-<p style="text-align: center;"><code>E-Mail: <strong><a href="mailto:kontakt@tgerber.net">kontakt@tgerber.net</a></strong></code></p>
-<p style="text-align: center;"><code>GitHub: <strong><a href="https://github.com/Fl1tzi">Fl1tzi</a></strong></code></p>
-  </div>
-<p><strong>&nbsp;</strong></p>
-  
+<div class="container">
+    <h1 class="neonText">
+          TGERBER.NET
+    </h1>
+    <h2 class="neonText">(:</h2> 
+
+ </div>
+
 <style>
- #rounded-corners {
-  border-radius: 0px 0px 25px 25px;
-  font-family: 'Courier New';
-  background-color: limegreen;
-  padding: 20px; 
-  width: 100px;  
-  text-align: center;
-  margin: auto;
-  width: 50%; 
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+.neonText {
+  color: #fff;
+  text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
 }
 
-  #div {
-    padding: 10px;
+h1 {
+  font-size: 4.2rem;
+  animation: flicker 1.5s infinite alternate;     
+}
+
+/* Flickering animation */
+@keyframes flicker {
+    
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #0fa,
+      0 0 80px #0fa,
+      0 0 90px #0fa,
+      0 0 100px #0fa,
+      0 0 150px #0fa;
+  
   }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
+}
+
+
+/* Additional styling */
+  
+h2 {
+ font-size: 1.8rem;
+}
+.container {
+  margin-top: 20vh;
+}
+
+body {
+  font-size: 18px;
+  font-family: "Helvetica Neue", sans-serif;
+  background-color: #010a01;
+}  
+
+h1, h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+}
 </style>
-
-
-
-</body><style type="text/css"></style></html>
