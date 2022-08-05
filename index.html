@@ -29,7 +29,7 @@ HI! Nice to see you here! (;
 	<div class="card">
 		<img src="assets/GitHub.png" alt="GitHub avatar" class="card-logo"></img>
 		<img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
-		<a href="https://github.com/Fl1tzi">
+		<a class="no-underline" href="https://github.com/Fl1tzi">
 		<button class="btn">Tobias (Fl1tzi)</button>
 		</a>
 	</div>
@@ -39,7 +39,7 @@ HI! Nice to see you here! (;
 		<button id=1 class="btn" onclick="discord_copy()">Fl1tzi#0001</button>
 
 		<p>TMS Minecraft Server (only german):</p>
-		<a href="https://discord.gg/f5KJbSWcMw">
+		<a class="no-underline" href="https://discord.gg/f5KJbSWcMw">
 		<button class="btn">Invite link</button>
 		</a>
 	</div>
@@ -207,8 +207,12 @@ HI! Nice to see you here! (;
 	 -11px -11px 22px #f0ece5;
 	border-radius: 50px;
 	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 20px;
-
+	max-width: 1500px;
+	width: 75%;
+	animation: blur 4s ease-in-out;
 }
 
 h1 {
@@ -237,13 +241,60 @@ details[open] summary ~ * {
   }
 }
 
+@keyframes blur {
+  0%    {
+	filter: blur(5px);
+  }
+  100%  {
+	filter: blur(0);
+  }
+}
 summary {
 	cursor: pointer;
 }
 
-a {
-  cursor: pointer;
-  text-decoration: none;
+footer {
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 50%;
 }
+
+/* let us just ignore this */
+.no-underline {
+	border-bottom: 0px solid;
+}
+
+.no-underline:hover::after {
+	border-bottom: 0px solid;
+	width: 0;
+}
+
+.no-underline::after {
+	width: 0;
+	border-bottom: 0px solid;
+}
+
+a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #3CCF4E;
+    transition: width .3s;
+	filter: blur(5px);
+}
+
+a:hover::after {
+    width: 100%;
+	filter: blur(5px)
+}
+
+a {
+	color: black;
+	display: inline-block;
+}
+
 </style>
 
