@@ -1,3 +1,4 @@
+/* changed by Fl1tzi(kontakt@tgerber.net) */
 
 ;window.calendar = (function(){
 
