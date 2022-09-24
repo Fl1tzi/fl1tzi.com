@@ -5,8 +5,13 @@
 	<link data-trunk rel="copy-file" href="fonts/JetBrainsMono-Regular.woff2">
 	<link data-trunk rel="copy-dir" href="assets">
 	<link data-trunk rel="css" href="index.css">
+	<link rel="stylesheet" href="index.css">
+	
+	<link rel="preload" href="/pkg/tgerber_net_wasm_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+	<link rel="modulepreload" href="/pkg/tgerber_net_wasm.js">
 </head>
 
+<script type="module">import init from '/pkg/tgerber_net_wasm.js';init('/pkg/tgerber_net_wasm_bg.wasm');</script></body></html>
 
 </html>
 
