@@ -10,13 +10,16 @@
   align-items: stretch;
 }
 
+pre {
+	overflow-wrap: break-word;
+}
+
 code {
   background-color: #eee;
   border: 1px solid #999;
   border-radius: 10px;
   display: block;
-  padding: 20px;
-  margin: 10px;
+  padding: 5px;
 }
 
 .post-title {
@@ -55,6 +58,15 @@ details > summary::-webkit-details-marker {
 	color: grey;
 	background-color: grey;
 	border-radius: 15px;
+}
+
+@media (max-width: 900px) {
+	.container {
+		border: 0px solid #FFF;
+		margin: 0;
+		padding: 0;
+		width: 90%;
+	}
 }
 
 
@@ -130,17 +142,29 @@ details > summary::-webkit-details-marker {
       0 0 151px #b22222;
 }
 
-.container {
-	border: 1px solid #FFF;
-	box-shadow:  11px 11px 22px #b2aea9,
-	 -11px -11px 22px #f0ece5;
-	border-radius: 50px;
-	margin: 10px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 20px;
-	max-width: 1500px;
-	width: 75%;
+@media only screen and (max-width: 800px) {
+	.container {
+		margin: 0;
+		padding: 0;
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media only screen and (min-width: 800px) {
+	.container {
+		border: 1px solid #FFF;
+		box-shadow:  11px 11px 22px #b2aea9,
+		 -11px -11px 22px #f0ece5;
+		border-radius: 50px;
+		margin: 10px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 20px;
+		max-width: 1500px;
+		width: 75%;
+	}
 }
 
 .blur {
