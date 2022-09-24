@@ -1,0 +1,13 @@
+{
+  "name": "tgerber-net-wasm",
+  "version": "0.1.0",
+  "files": [
+    "tgerber_net_wasm_bg.wasm",
+    "tgerber_net_wasm.js",
+    "tgerber_net_wasm_bg.js",
+    "tgerber_net_wasm.d.ts"
+  ],
+  "module": "tgerber_net_wasm.js",
+  "types": "tgerber_net_wasm.d.ts",
+  "sideEffects": false
+}

@@ -1,4 +1,4 @@
+**/dist
 **/target
-**/dist/
 .DS_Store
 desktop.ini
