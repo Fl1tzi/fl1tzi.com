@@ -1,48 +1,36 @@
-name: Deploy to Github Pages
+name: Publish wasm
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-    build-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v2
+  publish:
+    runs-on: ubuntu-latest
 
-            - name: Install Rust
-              uses: actions-rs/toolchain@v1
-              with:
-                  profile: minimal
-                  toolchain: stable
-                  override: true
+    steps:
+    # configure the environment
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v3.0.0
+      with:
+        node-version: '16'
+    - name: rust-toolchain
+      uses: actions-rs/toolchain@v1.0.6
+      with:
+        toolchain: stable
+        target: wasm32-unknown-unknown
+    - name: trunk-action
+      uses: jetli/trunk-action@v0.1.0
 
-            - name: Cache cargo registry
-              uses: actions/cache@v1
-              with:
-                  path: ~/.cargo/registry
-                  key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-            - name: Cache cargo index
-              uses: actions/cache@v1
-              with:
-                  path: ~/.cargo/git
-                  key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-            - name: Cache cargo build
-              uses: actions/cache@v1
-              with:
-                  path: target
-                  key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+    - name: run trunk
+      run: trunk build --release
 
-            - name: Install wasm-pack
-              run: cargo install wasm-pack
-
-            - name: Build
-              run: wasm-pack build --release
-
-            - name: Deploy
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-                  publish_dir: ./pkg
+    # deploy for github.io
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v3.7.3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: dist
