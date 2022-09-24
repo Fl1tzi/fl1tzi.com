@@ -190,6 +190,7 @@ fn App() -> Html {
 
 }*/
 
-fn main() {
+#[wasm_bindgen(start)]
+pub fn main() {
     yew::Renderer::<App>::new().render();
 }

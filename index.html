@@ -2,7 +2,6 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-	<link data-trunk rel="copy-file" href="fonts/JetBrainsMono-Regular.woff2">
 	<link data-trunk rel="copy-dir" href="assets">
 	<link data-trunk rel="css" href="index.css">
 	<link data-trunk rel="copy-dir" href="pkg">
@@ -10,18 +9,25 @@
 	
 	<link rel="preload" href="./pkg/tgerber_net_wasm_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 	<link rel="modulepreload" href="./pkg/tgerber_net_wasm.js">
+
+	<title>web.tgerber.net</title>
 </head>
 
 <body>
 
 <script type="module">
-	import init from '/pkg/tgerber_net_wasm.js';
+	/* import init from '/pkg/tgerber_net_wasm.js';
 	async function run() {
 		console.log("Starting WASM");
 		var out = await init();
 		console.log(out);
 	}
-	run();
+	run();*/
+	  import init from "./pkg/tgerber_net_wasm.js";
+	  init().then(() => {
+	  	console.log("started wasm (;");
+	  });
+
 </script>
 
 </body>
