@@ -17,9 +17,9 @@
 <script type="module">
 	import init from '/pkg/tgerber_net_wasm.js';
 	async function run() {
+		console.log("Starting WASM");
 		var out = await init();
 		console.log(out);
-		console.log("Starting WASM");
 	}
 	run();
 </script>
