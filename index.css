@@ -44,7 +44,7 @@ details > summary::-webkit-details-marker {
 
 @keyframes slideInFromTop {
   0% {
-    transform: translateY(-10%);
+    transform: translateY(-5%);
   }
   100% {
     transform: translateY(0);
@@ -53,7 +53,8 @@ details > summary::-webkit-details-marker {
 
 .post-line {
 	width: 80%;
-	margin-right: 100%;
+	margin-right: auto;
+	margin-left: 0;
 	height: 1px;
 	color: grey;
 	background-color: grey;
