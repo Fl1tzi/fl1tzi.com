@@ -1,0 +1,229 @@
+@font-face {
+  font-family: "JetbrainsMono";
+  src: url("JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+}
+
+code {
+  background-color: #eee;
+  border: 1px solid #999;
+  border-radius: 10px;
+  display: block;
+  padding: 20px;
+  margin: 10px;
+}
+
+.post-title {
+	padding: 5px;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.arrow {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-top: 2px solid #000;
+  border-right: 2px solid #000;
+  transform: rotate(135deg);
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.post-line {
+	width: 80%;
+	margin-right: 100%;
+	height: 1px;
+	color: grey;
+	background-color: grey;
+	border-radius: 15px;
+}
+
+
+.card {
+	padding: 20px;
+	border: 1px solid #FFF;
+	box-shadow:  11px 11px 22px #b2aea9,
+	 -11px -11px 22px #f0ece5;
+	border-radius: 50px;
+    display: inline-grid;
+	/* min-width: 400px;*/
+	margin: 10px;
+	line-break: auto;
+	max-inline-size: 500px;
+	animation: 1s ease-in-out 0s 1 slideInFromTop;
+}
+
+.card-logo {
+	width: 60px;
+	border-radius: 50%;
+}
+
+.logo {
+	margin: 30px 30px 0px 30px;
+	padding: 15px;
+}
+
+.btn {
+	border: 1px solid #FFF;
+	box-shadow:  11px 11px 22px #b2aea9,
+	 -11px -11px 22px #f0ece5;
+	border-radius: 50px;
+	height: 50px;
+	width: 125px;
+	padding: 10px;
+	margin-top:15px;
+	margin-bottom: 15px;
+
+	font-family: JetbrainsMono;
+	font-size: 12px;
+	cursor: pointer;
+	transition: width 1s;
+}
+
+.btn:hover {
+	width: 150px;
+}
+
+
+.neonText {
+  color: #fff;
+  text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
+}
+
+.neonText-red {
+  color: #fff;
+  text-shadow:
+      0 0 7px #fff,
+      0 0 10px #b22222,
+      0 0 21px #b22222,
+      0 0 42px #b22222,
+      0 0 82px #b22222,
+      0 0 92px #b22222,
+      0 0 102px #b22222,
+      0 0 151px #b22222;
+}
+
+.container {
+	border: 1px solid #FFF;
+	box-shadow:  11px 11px 22px #b2aea9,
+	 -11px -11px 22px #f0ece5;
+	border-radius: 50px;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	max-width: 1500px;
+	width: 75%;
+}
+
+.blur {
+	animation: blur 2s ease-in-out;
+}
+
+h1 {
+  font-size: 4.2rem;
+}
+
+
+body {
+  font-family: "JetbrainsMono";
+  font-size: 18px;
+  background-color: #EFEEEE
+}  
+
+details[open] summary ~ * {
+  animation: sweep .5s ease-in-out;
+}
+
+@keyframes sweep {
+  0%    {
+	filter: blur(5px);
+	margin-top: -15px;
+  }
+  100%  {
+	filter: blur(0);
+	margin-top:0px;
+  }
+}
+
+@keyframes blur {
+  0%    {
+	filter: blur(5px);
+  }
+  100%  {
+	filter: blur(0);
+  }
+}
+summary {
+	cursor: pointer;
+}
+
+footer {
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 50%;
+}
+
+/* let us just ignore this */
+.no-underline {
+	border-bottom: 0px solid;
+}
+
+.no-underline:hover::after {
+	border-bottom: 0px solid;
+	width: 0;
+}
+
+.no-underline::after {
+	width: 0;
+	border-bottom: 0px solid;
+}
+
+a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #3CCF4E;
+    transition: width .3s;
+	filter: blur(5px);
+}
+
+a:hover::after {
+    width: 100%;
+	filter: blur(5px)
+}
+
+a {
+	color: black;
+	display: inline-block;
+}
