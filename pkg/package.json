@@ -4,7 +4,6 @@
   "files": [
     "tgerber_net_wasm_bg.wasm",
     "tgerber_net_wasm.js",
-    "tgerber_net_wasm_bg.js",
     "tgerber_net_wasm.d.ts"
   ],
   "module": "tgerber_net_wasm.js",
