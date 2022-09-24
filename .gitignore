@@ -1,4 +1,5 @@
 **/target
 **/dist/
+**/pkg/
 .DS_Store
 desktop.ini

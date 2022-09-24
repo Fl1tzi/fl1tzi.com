@@ -81,7 +81,6 @@ checksum = "ab30e97ab6aacfe635fad58f22c2bb06c8b685f7421eb1e064a729e2a5f481fa"
 dependencies = [
  "futures-channel",
  "futures-core",
- "futures-executor",
  "futures-io",
  "futures-sink",
  "futures-task",
@@ -103,17 +102,6 @@ name = "futures-core"
 version = "0.3.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d2acedae88d38235936c3922476b10fced7b2b68136f5e3c03c2d5be348a1115"
-
-[[package]]
-name = "futures-executor"
-version = "0.3.23"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1d11aa21b5b587a64682c0094c2bdd4df0076c5324961a40cc3abd7f37930528"
-dependencies = [
- "futures-core",
- "futures-task",
- "futures-util",
-]
 
 [[package]]
 name = "futures-io"
@@ -569,12 +557,8 @@ dependencies = [
 name = "tgerber-net-wasm"
 version = "0.1.0"
 dependencies = [
- "futures",
- "gloo-net",
  "gloo-utils",
- "tokio",
  "wasm-bindgen",
- "wasm-bindgen-futures",
  "web-sys",
  "yew",
 ]
@@ -606,7 +590,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7a8325f63a7d4774dd041e363b2409ed1c5cbbd0f867795e661df066b2b0a581"
 dependencies = [
  "autocfg",
- "once_cell",
  "pin-project-lite",
 ]
 

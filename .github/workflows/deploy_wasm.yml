@@ -35,14 +35,14 @@ jobs:
                   path: target
                   key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
 
-            - name: Install cargo-web
-              run: cargo install cargo-web
+            - name: Install wasm-pack
+              run: cargo install wasm-pack
 
             - name: Build
-              run: cargo web deploy --release
+              run: wasm-pack build --release
 
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
               with:
                   deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-                  publish_dir: ./target/deploy
+                  publish_dir: ./pkg
