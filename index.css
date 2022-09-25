@@ -44,7 +44,7 @@ details > summary::-webkit-details-marker {
 
 @keyframes slideInFromTop {
   0% {
-    transform: translateY(-5%);
+    transform: translateY(-1em);
   }
   100% {
     transform: translateY(0);
