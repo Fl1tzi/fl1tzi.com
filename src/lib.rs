@@ -14,13 +14,14 @@ const POSTS: [Post; LEN] =
         name: "Wasm on this site",
         desc: "
             <p style=\"font-weight: 900\">Yes, this site is now running some WebAssembly.</p>
+            <p>Even tho it is not very much you can see it in the GitHub repo of this page: <a href=\"https://github.com/Fl1tzi/tgerber.net\">Fl1tzi/tgerber.net</a></p>
             "
     },
     Post {
         name: "Nushell is AWESOME!",
         desc: "
         <p>
-        I recently discovered <a href=\"https://nushell.com\">Nushell</a> as a shell. And I was suprised what it can do. </p>
+        I recently discovered <a href=\"https://nushell.sh\">Nushell</a> as a shell. And I was suprised what it can do. </p>
         <p>I really like the data oriented functionality of Nushell, which provides me with tables as an output for many things and the easy piping syntax it has.</p>
         <p>Not only that but it already implements many data types like JSON, YAML, SQLite, Excel, csv and many similar data types. And they allow you to do many things with them. If I like a value of a key out of a JSON file I would usually would open NVIM and search for the key but now I just do </p>
 
