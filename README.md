@@ -1,2 +1,2 @@
-# tgerber-net-wasm
-The Rust source for my website.
+# web.tgerber.net
+Visit this site at [web.tgerber.net](https://web.tgerber.net)
