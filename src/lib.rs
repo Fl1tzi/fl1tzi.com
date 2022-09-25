@@ -128,7 +128,7 @@ impl Component for App {
         };
         html! {
         <>
-        <div class="container">
+        <div class="container grid">
             <div class="logo">
                 <h1 style="margin-top: 0; margin-left: -25px;">{ "Fl1tzi" }</h1>
                 <p style="margin-top: -20px; margin-left: -20px;">{ "kontakt@tgerber.net" }</p>
@@ -144,7 +144,13 @@ impl Component for App {
                 <img src="assets/Discord.png" alt="Discord avatar" class="card-logo"/>
                 <p>{ "Profile:" }</p>
                 <button id=1 class="btn" >{ "Fl1tzi#0001" }</button>
-
+            </div>
+            <div class="card">
+                <p style="font-size: 25px;">{ "[ Matrix ]" }</p>
+                <p>{ "Find me in the Matrix:" }</p>
+                <a class="no-underline" href="https://matrix.to/#/@fl1tzi:server.tgerber.net">
+                <button class="btn green-button">{ "@Fl1tzi:server.tgerber.net" }</button>
+                </a>
             </div>
          </div>
 

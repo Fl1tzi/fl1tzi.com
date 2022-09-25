@@ -5,9 +5,8 @@
 
 .grid { 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
-  align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 pre {
@@ -82,9 +81,10 @@ details > summary::-webkit-details-marker {
 	border-radius: 50px;
     display: inline-grid;
 	/* min-width: 400px;*/
+	max-width: 500px;
 	margin: 10px;
 	line-break: auto;
-	max-inline-size: 500px;
+	max-inline-size: auto;
 	animation: 1s ease-in-out 0s 1 slideInFromTop;
 }
 
@@ -108,12 +108,20 @@ details > summary::-webkit-details-marker {
 	padding: 10px;
 	margin-top:15px;
 	margin-bottom: 15px;
+	max-width: 200px;
+	word-break: break-all;
 
 	font-family: JetbrainsMono;
 	font-size: 12px;
 	cursor: pointer;
-	transition: width 1s;
+	transition: width 3s;
 }
+
+.green-button {
+	background: rgb(255,255,255);
+	background: linear-gradient(189deg, rgba(255,255,255,0.25672275746235995) 7%, rgba(0,74,24,0.2623249983587185) 100%);
+}
+
 
 .btn:hover {
 	width: 150px;
