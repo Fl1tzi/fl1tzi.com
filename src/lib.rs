@@ -4,9 +4,10 @@ use web_sys;
 use wasm_bindgen::prelude::*;
 
 pub struct Post {
+    number: usize,
     name: &'static str,
     prev: &'static str,
-    desc: &'static str
+    desc: &'static str,
 }
 
 // the posts which are shown
@@ -15,6 +16,7 @@ const LEN: usize = 2;
 const POSTS: [Post; LEN] = 
     [
     Post{
+        number: 1,
         name: "WASM on this site",
         prev: "This site now runs WebAssembly!",
         desc: "
@@ -23,6 +25,7 @@ const POSTS: [Post; LEN] =
             "
     },
     Post {
+        number: 2,
         name: "Nushell is AWESOME!",
         prev: "My new shell",
         desc: "
@@ -87,11 +90,24 @@ pub struct App {
     pub container: NodeRef,
     pub post_prompt_text: &'static str,
     pub post_prompt_title: &'static str,
+    pub post_prompt_hash: usize,
 }
 
 pub enum Msg {
+    // this uses the post number (useful for search)
+    // why? allows me to manually set index and change out items without letting them change
     OpenBox(usize),
+    // this uses the array index (useful for buttons)
+    // why? It's probably more efficient
+    OpenBoxIndex(usize),
+    OpenError(ErrorType),
     CloseBox
+}
+
+pub enum ErrorType {
+    NotFound,
+    ParseError,
+    IndexNotFound
 }
 
 impl App {
@@ -136,15 +152,59 @@ impl App {
     }
 }
 
+fn get_post_index(n: usize) -> Option<usize> {
+    POSTS.iter().position(|p| p.number == n)
+}
+
 impl Component for App {
     type Message = Msg;
     type Properties = PostProps;
 
     fn create(_ctx: &Context<Self>) -> Self {
+        let document = gloo_utils::document();
+        let url = document
+            .url().unwrap();
+        let vals = url
+            .split("/")
+            .collect::<Vec<&str>>();
+        let index_str = vals[vals.len() - 1];
+        if index_str != "" {
+            match index_str.parse::<usize>() {
+                Ok(index) => {
+                    let mut found: bool = false;
+                    // see if there is a post with that index
+                    for post in POSTS {
+                        if post.number == index {
+                            found = true;
+                        }
+                    }
+                    if found == false {
+                        // there is no post with that index
+                        _ctx
+                            .link()
+                            .callback(move |_| Msg::OpenError(ErrorType::NotFound))
+                            .emit(());
+                    } else {
+                        // there is a post with that index
+                        _ctx
+                            .link()
+                            .callback(move |v: usize| Msg::OpenBox(v))
+                            .emit(index);
+                        }
+                    },
+                    Err(e) => {
+                        _ctx
+                            .link()
+                            .callback(move |_| Msg::OpenError(ErrorType::ParseError))
+                            .emit(());
+                    }
+            }
+        }
         Self {
             container: NodeRef::default(),
             post_prompt_text: "",
             post_prompt_title: "",
+            post_prompt_hash: 0
         }
 
     }
@@ -155,15 +215,59 @@ impl Component for App {
         // let container = Html::VRef(container.into());
 
         match msg {
+            Msg::OpenBoxIndex(n) => {
+                if n >= POSTS.len() {
+                    _ctx
+                        .link()
+                        .callback(move |_| Msg::OpenError(ErrorType::IndexNotFound))
+                        .emit(());
+                    false
+                } else {
+                    let post = &POSTS[n];
+                    self.post_prompt_text = post.desc;
+                    self.post_prompt_title = post.name;
+                    self.post_prompt_hash = post.number;
+                    self.open_box(_ctx.link());
+                    true
+                }
+            }
             Msg::OpenBox(n) => {
-                let post = &POSTS[n];
-                self.post_prompt_text = post.desc;
-                self.post_prompt_title = post.name;
-                self.open_box(_ctx.link());
-                true
+                console_log!("Opening box");
+                // let post = &POSTS[n];
+                match get_post_index(n) {
+                    Some(index) => {
+                        let post = &POSTS[index];
+                        self.post_prompt_text = post.desc;
+                        self.post_prompt_title = post.name;
+                        self.post_prompt_hash = post.number;
+                        self.open_box(_ctx.link());
+                        true
+                    },
+                    None => {
+                        _ctx
+                            .link()
+                            .callback(move |_| Msg::OpenError(ErrorType::IndexNotFound))
+                            .emit(());
+                        false
+                    }
+                }
+
             },
             Msg::CloseBox => {
+                console_log!("Closing box");
                 self.close_box(_ctx.link());
+                true
+            },
+            Msg::OpenError(e) => {
+                console_log!("Showing error");
+                self.post_prompt_title = "Error";
+                self.post_prompt_hash = 404;
+                self.post_prompt_text = match e {
+                    ErrorType::NotFound => "<p>The post you were searching for was not found.</p>",
+                    ErrorType::ParseError => "<p>Search value not allowed. The argument has to be a number being positive.</p>",
+                    ErrorType::IndexNotFound => "<p>Internal error: The requested index was not found.</p><p>If this issue persists please open an issue on https://github.com/Fl1tzi/tgerber.net</p>"
+                };
+                self.open_box(_ctx.link());
                 true
             }
         }
@@ -189,7 +293,10 @@ impl Component for App {
                 <button class="no-btn-style" style="float: right;" onclick={ _ctx.link().callback(|_| Msg::CloseBox) }>
                 <span class="close-popup">{ "[X]" }</span>
                 </button>
-                <h3>{ &self.post_prompt_title }</h3>
+                <span style="font-size: 30px;">{ format!("// {} ", &self.post_prompt_title) }</span>
+                <span style="color: grey;">{ 
+                    format!("#{}", &self.post_prompt_hash) }
+                </span>
                 <br/>
                 { get_rendered_html(&self.post_prompt_text) }
             </div>
@@ -239,7 +346,12 @@ impl Component for App {
             { for POSTS.iter().enumerate().map(|(index, post)| {
                                           html! {
                                               <div class="card">
-                                                  <h3 class="post-title">
+                                                <span class="post-date">{ 
+                                                    format!("#{}",
+                                                            post.number
+                                                            )
+                                                }</span>
+                                              <h3 class="post-title">
                                                     { post.name }
                                                   </h3>
                                                 <p class="post-prev">
@@ -248,7 +360,7 @@ impl Component for App {
 
                                                 <button onclick={_ctx
                                                     .link()
-                                                    .callback(move |_| Msg::OpenBox(index))} class="btn">{ "Open post" }</button>
+                                                    .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "Open post" }</button>
                                                   </div>
 
                                           }
@@ -258,7 +370,7 @@ impl Component for App {
 
         <div class="blur">
         <footer>
-            <details style="margin-top: 10px; font-size: 13px; word-break: break-word;">
+            <details style="margin-top: 40px; font-size: 13px; word-break: break-word;">
                 // I can't get it to center properly
                 <summary style="border: 1px solid black; border-radius: 5px; padding: 10px;">
                 <p>{ "Datenschutzerklärung" }</p>
