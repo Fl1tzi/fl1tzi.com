@@ -192,7 +192,7 @@ impl Component for App {
                             .emit(index);
                         }
                     },
-                    Err(e) => {
+                    Err(_e) => {
                         _ctx
                             .link()
                             .callback(move |_| Msg::OpenError(ErrorType::ParseError))
@@ -216,6 +216,7 @@ impl Component for App {
 
         match msg {
             Msg::OpenBoxIndex(n) => {
+                console_log!("Opening box by index");
                 if n >= POSTS.len() {
                     _ctx
                         .link()
@@ -223,11 +224,17 @@ impl Component for App {
                         .emit(());
                     false
                 } else {
+                    let location = gloo_utils::window().location();
                     let post = &POSTS[n];
                     self.post_prompt_text = post.desc;
                     self.post_prompt_title = post.name;
                     self.post_prompt_hash = post.number;
                     self.open_box(_ctx.link());
+                    location
+                        .set_href(
+                            format!("/#/{}", post.number).as_str()
+                            )
+                        .unwrap();
                     true
                 }
             }
@@ -255,6 +262,10 @@ impl Component for App {
             },
             Msg::CloseBox => {
                 console_log!("Closing box");
+                let location = gloo_utils::window().location();
+                location
+                    .set_href("")
+                    .unwrap();
                 self.close_box(_ctx.link());
                 true
             },
