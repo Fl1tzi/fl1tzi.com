@@ -125,18 +125,15 @@ impl App {
         let box_inner = document
             .get_element_by_id("post-popup-inner")
             .unwrap();
-        match container_all.set_attribute("style", "display: none;") {
-            Ok(_v) => console_log!("Hiding container-all"),
-            Err(e) => console_log!("Container all could not be hidden: {:?}", e)
-        };
-        match box_element.set_attribute("style", "display: block;") {
-            Ok(_v) => console_log!("Showing outer box"),
-            Err(e) => console_log!("Could not show box: {:?}", e)
-        };
-        match box_inner.set_attribute("style", "display: block;") {
-            Ok(_v) => console_log!("Showing inner box"),
-            Err(e) => console_log!("Could not show outer box: {:?}", e)
-        }
+        container_all
+            .set_attribute("style", "display: none;")
+            .expect("Could not hide main container");
+        box_element
+            .set_attribute("style", "display: block;")
+            .expect("Could not show outer box");
+        box_inner
+            .set_attribute("style", "display: block;")
+            .expect("Could not show inner box");
     }
     fn close_box(&self, _sink: &Scope<Self>) {
         console_log!("Closing post overlay");
@@ -151,19 +148,17 @@ impl App {
         let box_inner = document
             .get_element_by_id("post-popup-inner")
             .unwrap();
-        match container_all.set_attribute("style", "display: block;") {
-            Ok(_v) => console_log!("Hiding container-all"),
-            Err(e) => console_log!("Container all could not be hidden: {:?}", e)
-        };
-        match box_element.set_attribute("style", "display: none;") {
-            Ok(_v) => console_log!("Hiding outer box"),
-            Err(e) => console_log!("Could not hide box: {:?}", e)
-        };
-        match box_inner.set_attribute("style", "display: none;") {
-            Ok(_v) => console_log!("Hiding inner box"),
-            Err(e) => console_log!("Could not hide outer box: {:?}", e)
-        }
+        container_all
+            .set_attribute("style", "display: block;")
+            .expect("Could not show the main container");
+        box_element
+            .set_attribute("style", "display: none;")
+            .expect("Could not hide outer box");
+        box_inner
+            .set_attribute("style", "display: none;")
+            .expect("Could not hide inner box");
     }
+
 }
 
 fn get_post_index(n: usize) -> Option<usize> {
