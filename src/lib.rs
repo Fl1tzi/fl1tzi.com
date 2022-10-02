@@ -373,7 +373,8 @@ impl Component for App {
             { for POSTS.iter().enumerate().map(|(index, post)| {
                                           html! {
                                               <div class="card">
-                                                <span class="post-date">{ 
+                                                <div class="inner-card">
+                                                <span class="post-num">{ 
                                                     format!("#{}",
                                                             post.number
                                                             )
@@ -388,6 +389,7 @@ impl Component for App {
                                                 <button onclick={_ctx
                                                     .link()
                                                     .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "Open post" }</button>
+                                                  </div>
                                                   </div>
 
                                           }

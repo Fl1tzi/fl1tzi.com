@@ -39,9 +39,6 @@
 	position: fixed;
 	overflow: auto;
 	background-color: #EFEEEE;
-	/* background-color: rgba(0, 0, 0, 0.5);*/
-
-
 	/*  background: rgb(112,255,202);
 background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rgba(0,0,0,0.8881924020305667) 100%);*/
 	top: 0;
@@ -86,7 +83,12 @@ code {
 }
 
 .post-title {
-	padding-top: 15px;
+	padding: 15px;
+	color: white;
+	border: 1px solid white;
+	background-color: black;
+	margin-top: -30px;
+	clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 90% 0);
 }
 
 .post-prev {
@@ -94,14 +96,17 @@ code {
 	color: grey;
 }
 
-.post-date {
-	margin-top: 10px;
-	color: grey;
-}
-
 .post-num {
-	color: grey;
+	color: white;
 	font-weight: bold;
+	writing-mode:tb-rl;
+    transform: rotate(180deg);
+    white-space:nowrap;
+    display:block;
+	margin-left: -30px;
+	background-color: black;
+	padding: 10px 0 10px 0;
+    bottom:0;
 }
 
 .arrow {
@@ -149,6 +154,12 @@ code {
 	max-inline-size: auto;
 	font-size: 16px;
 	/* animation: 1s ease-in-out 0s 1 slideInFromTop; */
+}
+
+.inner-card {
+	border-left: 2px solid black;
+	padding: 20px;
+	margin-left: 10px;
 }
 
 .card-logo {
