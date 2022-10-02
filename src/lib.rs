@@ -116,12 +116,19 @@ impl App {
         console_log!("Opening post overlay");
         let window = web_sys::window().unwrap();
         let document = window.document().unwrap();
+        let container_all = document
+            .get_element_by_id("container-all")
+            .unwrap();
         let box_element = document
             .get_element_by_id("post-popup-box")
             .unwrap();
         let box_inner = document
             .get_element_by_id("post-popup-inner")
             .unwrap();
+        match container_all.set_attribute("style", "display: none;") {
+            Ok(_v) => console_log!("Hiding container-all"),
+            Err(e) => console_log!("Container all could not be hidden: {:?}", e)
+        };
         match box_element.set_attribute("style", "display: block;") {
             Ok(_v) => console_log!("Showing outer box"),
             Err(e) => console_log!("Could not show box: {:?}", e)
@@ -135,12 +142,19 @@ impl App {
         console_log!("Closing post overlay");
         let window = web_sys::window().unwrap();
         let document = window.document().unwrap();
+        let container_all = document
+            .get_element_by_id("container-all")
+            .unwrap();
         let box_element = document
             .get_element_by_id("post-popup-box")
             .unwrap();
         let box_inner = document
             .get_element_by_id("post-popup-inner")
             .unwrap();
+        match container_all.set_attribute("style", "display: block;") {
+            Ok(_v) => console_log!("Hiding container-all"),
+            Err(e) => console_log!("Container all could not be hidden: {:?}", e)
+        };
         match box_element.set_attribute("style", "display: none;") {
             Ok(_v) => console_log!("Hiding outer box"),
             Err(e) => console_log!("Could not hide box: {:?}", e)
@@ -264,7 +278,7 @@ impl Component for App {
                 console_log!("Closing box");
                 let location = gloo_utils::window().location();
                 location
-                    .set_href("")
+                    .set_href("/#/")
                     .unwrap();
                 self.close_box(_ctx.link());
                 true
@@ -294,10 +308,6 @@ impl Component for App {
         html! {
         <>
         <hr/>
-        // verticall FOSS title
-        <div class="vertical-left">
-            <span>{ " FOSS <3 // "}</span>
-        </div>
         // popup
         <div class="post-popup-box" id="post-popup-box">
             <div class="post-popup-inner" id="post-popup-inner">
@@ -311,6 +321,12 @@ impl Component for App {
                 <br/>
                 { get_rendered_html(&self.post_prompt_text) }
             </div>
+        </div>
+        // the container for all items that are not the message
+        <div id="container-all">
+        // verticall FOSS title
+        <div class="vertical-left">
+            <span>{ " FOSS <3 // "}</span>
         </div>
         // socials
         <div class="container grid">
@@ -436,6 +452,7 @@ Grundsätzlich ist ein Auftragsverarbeitungsvertrag mit dem Hoster abzuschließe
             <p>{ "//" }</p>
         <p>{ "short version: This site does not use any data from you but GitHub (the hoster) could save some data." }</p>
         </footer>
+        </div>
         </div>
         </>
         }
