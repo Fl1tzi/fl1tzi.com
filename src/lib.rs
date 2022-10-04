@@ -334,7 +334,7 @@ impl Component for App {
                 // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
                 <p>{ "Profile:" }</p>
                 <a class="no-underline" href="https://github.com/Fl1tzi">
-                <button class="btn">{ "Tobias (Fl1tzi)" }</button>
+                <button class="btn">{ "Fl1tzi" }</button>
                 </a>
             </div>
             <div class="card">
