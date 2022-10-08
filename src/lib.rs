@@ -12,9 +12,29 @@ pub struct Post {
 
 // the posts which are shown
 // TODO: make it dynamic
-const LEN: usize = 2;
+const LEN: usize = 3;
 const POSTS: [Post; LEN] = 
     [
+        Post {
+            number: 3,
+            name: "[DE] Chatkontrolle stoppen!",
+            prev: "Eine EU Verordnung gegen die Privatsphäre",
+            desc: "
+                <p>
+                Die EU möchte mithilfe einer digitalen Kommunikationskontrolle die Chats von Benutzern umfassend überwachen.
+                </p>
+                <p>
+                Sämtliche Nachrichten in sozialen Medien sollen hiermit kontrolliert werden und die Ende-zu-Ende Verschlüsselung umgangen werden, sodass Daten gelesen und ausgewertet werden können.
+                </p>
+                <p>
+                Kampagnenvideo: [<a href=\"https://youtu.be/cpGSqroLomg\">youtu.be/cpGSqroLomg</a>]
+                </p>
+                <p>
+                Mehr Informationen hier: [<a href=\"https://chat-kontrolle.eu\">chat-kontrolle.eu</a>]
+                </p>
+                "
+        },
+
     Post{
         number: 1,
         name: "WASM on this site",
@@ -326,9 +346,10 @@ impl Component for App {
         // socials
         <div class="container grid">
             <div class="logo">
-                <h1 style="margin-top: 0; margin-left: -25px;">{ "Fl1tzi" }</h1>
+                <h1 class="section-title">{"Fl1tzi" }</h1>
                 <p style="margin-top: -20px; margin-left: -20px;">{ "kontakt@tgerber.net" }</p>
             </div>
+            <br/>
             <div class="card">
                 <img src="assets/GitHub.png" alt="GitHub avatar" class="card-logo"/>
                 // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
@@ -353,7 +374,7 @@ impl Component for App {
 
          <div class="container" id="post-container">
             <div class="logo">
-                <h1 style="margin-top: 0; margin-left: -25px;">{ "Posts" }</h1>
+                <h1 class="section-title">{ "Posts" }</h1>
             </div>
 
          <template id="post-template">
