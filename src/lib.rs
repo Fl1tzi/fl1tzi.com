@@ -11,6 +11,7 @@ pub struct Post {
 }
 
 // the posts which are shown
+// do NOT use 404
 // TODO: make it dynamic
 const LEN: usize = 3;
 const POSTS: [Post; LEN] = 
@@ -133,7 +134,7 @@ pub enum ErrorType {
 impl App {
     // TODO: make it smaller because it almost the same
     fn open_box(&self, _sink: &Scope<Self>) {
-        console_log!("Opening post overlay");
+        console_log!("[  ] Opening post");
         let window = web_sys::window().unwrap();
         let document = window.document().unwrap();
         let container_all = document
@@ -156,7 +157,7 @@ impl App {
             .expect("Could not show inner box");
     }
     fn close_box(&self, _sink: &Scope<Self>) {
-        console_log!("Closing post overlay");
+        console_log!("[X] Closing post");
         let window = web_sys::window().unwrap();
         let document = window.document().unwrap();
         let container_all = document
@@ -177,6 +178,11 @@ impl App {
         box_inner
             .set_attribute("style", "display: none;")
             .expect("Could not hide inner box");
+        // scrolling back into the view
+        let post_element = document
+            .get_element_by_id(format!("post-{}", self.post_prompt_hash).as_str())
+            .expect("Post was not found");
+        post_element.scroll_into_view();
     }
 
 }
@@ -245,7 +251,6 @@ impl Component for App {
 
         match msg {
             Msg::OpenBoxIndex(n) => {
-                console_log!("Opening box by index");
                 if n >= POSTS.len() {
                     _ctx
                         .link()
@@ -290,7 +295,7 @@ impl Component for App {
 
             },
             Msg::CloseBox => {
-                console_log!("Closing box");
+                // console_log!("Closing box");
                 let location = gloo_utils::window().location();
                 location
                     .set_href("/#/")
@@ -299,8 +304,9 @@ impl Component for App {
                 true
             },
             Msg::OpenError(e) => {
-                console_log!("Showing error");
+                // console_log!("Showing error");
                 self.post_prompt_title = "Error";
+                // I will probably shoot me into my own foot with that lol
                 self.post_prompt_hash = 404;
                 self.post_prompt_text = match e {
                     ErrorType::NotFound => "<p>The post you were searching for was not found.</p>",
@@ -314,8 +320,8 @@ impl Component for App {
     }
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
+        let document = gloo_utils::document();
         let get_rendered_html = |html| -> yew::virtual_dom::VNode {
-            let document = gloo_utils::document();
             let element = document.create_element("div").unwrap();
             element.set_inner_html(html);
             Html::VRef(element.into())
@@ -353,15 +359,15 @@ impl Component for App {
             <div class="card">
                 <img src="assets/GitHub.png" alt="GitHub avatar" class="card-logo"/>
                 // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
-                <p>{ "Profile:" }</p>
+                <p>{ "GitHub:" }</p>
                 <a class="no-underline" href="https://github.com/Fl1tzi">
                 <button class="btn">{ "Fl1tzi" }</button>
                 </a>
             </div>
             <div class="card">
                 <img src="assets/Discord.png" alt="Discord avatar" class="card-logo"/>
-                <p>{ "Profile:" }</p>
-                <button id=1 class="btn" >{ "Fl1tzi#0001" }</button>
+                <p style="margin-top: 0;">{ "Discord:" }</p>
+                <p>{ "Fl1tzi#0001" }</p>
             </div>
             <div class="card">
                 <p style="font-size: 25px;">{ "[ Matrix ]" }</p>
@@ -388,7 +394,7 @@ impl Component for App {
 
             { for POSTS.iter().enumerate().map(|(index, post)| {
                                           html! {
-                                              <div class="card">
+                                              <div class="card" id={ format!("post-{}", post.number) }>
                                                 <div class="inner-card">
                                                 <span class="post-num">{ 
                                                     format!("#{}",
