@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "JetbrainsMono";
-  src: url("JetBrainsMono-Regular.woff2") format("woff2");
+  font-family: "SpaceGrotesk";
+  src: url("SpaceGrotesk[wght].woff2") format("woff2");
 }
 
 :root {
@@ -178,6 +178,7 @@ code {
 .logo {
 	margin: 30px 30px 0px 30px;
 	padding: 15px;
+	letter-spacing: 3px;
 }
 
 .vertical-left {
@@ -201,7 +202,7 @@ code {
 	 background: rgb(85,255,209);
 background: linear-gradient(90deg, rgba(85,255,209,0.3) 0%, rgba(239,238,238,0.6628852224483543) 80%);
 
-	font-family: JetbrainsMono;
+	font-family: SpaceGrotesk;
 	font-size: 12px;
 	cursor: pointer;
 	transition: width 3s;
@@ -289,7 +290,7 @@ h1 {
 
 
 body {
-  font-family: "JetbrainsMono";
+  font-family: "SpaceGrotesk";
   font-size: 18px;
   background-color: #EFEEEE
 }  
@@ -300,12 +301,12 @@ details[open] summary ~ * {
 
 @keyframes sweep {
   0%    {
-	filter: blur(5px);
-	margin-top: -15px;
+	/* filter: blur(5px); */
+	filter: opacity(10%);
   }
   100%  {
-	filter: blur(0);
-	margin-top:0px;
+	/* filter: blur(0); */
+	filter: opacity(100%);
   }
 }
 
@@ -322,10 +323,10 @@ summary {
 }
 
 footer {
-	margin-top: 10px;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: center;
+	text-align: left;
 	width: 50%;
 }
 

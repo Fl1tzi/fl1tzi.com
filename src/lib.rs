@@ -13,7 +13,7 @@ pub struct Post {
 // the posts which are shown
 // do NOT use 404
 // TODO: make it dynamic
-const LEN: usize = 3;
+const LEN: usize = 2;
 const POSTS: [Post; LEN] = 
     [
         Post {
@@ -28,14 +28,9 @@ const POSTS: [Post; LEN] =
                 Sämtliche Nachrichten in sozialen Medien sollen hiermit kontrolliert werden und die Ende-zu-Ende Verschlüsselung umgangen werden, sodass Daten gelesen und ausgewertet werden können.
                 </p>
                 <p>
-                Kampagnenvideo: [<a href=\"https://youtu.be/cpGSqroLomg\">youtu.be/cpGSqroLomg</a>]
-                </p>
-                <p>
-                Mehr Informationen hier: [<a href=\"https://chat-kontrolle.eu\">chat-kontrolle.eu</a>]
-                </p>
+                Eine gute Übersicht gibts im Artikel vom CCC: <a href=\"https://www.ccc.de/de/updates/2022/eu-kommission-will-alle-chatnachrichten-durchleuchten\">https://www.ccc.de/de/updates/2022/eu-kommission-will-alle-chatnachrichten-durchleuchten</a>
                 "
         },
-
     Post{
         number: 1,
         name: "WASM on this site",
@@ -44,43 +39,6 @@ const POSTS: [Post; LEN] =
             <p style=\"font-weight: 900\">Yes, this site is now running some WebAssembly.</p>
             <p>All posts are rendered from Rust using WASM. You can see the whole source here: <a href=\"https://github.com/Fl1tzi/tgerber.net\">Fl1tzi/tgerber.net</a></p>
             "
-    },
-    Post {
-        number: 2,
-        name: "Nushell is AWESOME!",
-        prev: "My new shell",
-        desc: "
-        <p>
-        I recently discovered <a href=\"https://nushell.sh\">Nushell</a> as a shell. And I was suprised what it can do. </p>
-        <p>I really like the data oriented functionality of Nushell, which provides me with tables as an output for many things and the easy piping syntax it has.</p>
-        <p>Not only that but it already implements many data types like JSON, YAML, SQLite, Excel, csv and many similar data types. And they allow you to do many things with them. If I like a value of a key out of a JSON file I would usually would open NVIM and search for the key but now I just do </p>
-
-        <code>open config.json | get a.\"1\"</code>
-
-        <p>And it would print this readable table</p>
-
-<pre><code>
-╭────────────┬───────╮
-│ name       │       │
-│ vol        │ 100   │
-│ mute       │ false │
-│ eq_control │       │
-│ eq_name    │       │
-│ use_eq     │ false │
-│ channels   │ 1     │
-╰────────────┴───────╯
-</code></pre>
-
-
-        <p>For example listing only directories in Bash would look like this: </p>
-
-        <code>ls -d */</code>
-
-        <p>If you would see this syntax for the first time you would need to look up what the -d flag does and remember that.<p>
-        <p>This on the other hand in Nushell would make it much easier to remember and to use on other commands: </p>
-        <code>ls | where type == dir</code>
-        <p>And the major thing you see is that a command does not pipe only simple text anymore but also big data structures. It opens up new ways to interact with other commands.</p>
-        <p>Nushell did not reach version 1.0 yet and still has some bugs, but I like the concept it is currently following.</p>"
     },
 ];
 
@@ -419,13 +377,14 @@ impl Component for App {
 
           </div>
 
-        <div class="blur">
+        <div>
         <footer>
             <details style="margin-top: 40px; font-size: 13px; word-break: break-word;">
                 // I can't get it to center properly
                 <summary style="border: 1px solid black; border-radius: 5px; padding: 10px;">
                 <p>{ "Datenschutzerklärung" }</p>
                 </summary>
+                <code>
                 <p>{"
                 Kontakt: kontakt@tgerber.net
                 "}</p>
@@ -469,12 +428,11 @@ Grundsätzlich ist ein Auftragsverarbeitungsvertrag mit dem Hoster abzuschließe
                 <p>{"
                 GitHub Datenschutzerklärung: https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement?tid=134222759
                 "}</p>
-                    <p>{"
-                    Vielen Dank an opr.vs für ihre Arbeit.
-                        "}</p>
+            </code>
             </details>
             <p>{ "//" }</p>
-        <p>{ "short version: This site does not use any data from you but GitHub (the hoster) could save some data." }</p>
+        <p>{ "short version: This site does not use any data from you but GitHub (the hoster) could save some data." }</p> 
+        <p style="font-size: 12px;">{ "Thank you for visiting!" }</p>
         </footer>
         </div>
         </div>
