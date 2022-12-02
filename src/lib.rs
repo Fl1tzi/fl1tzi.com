@@ -2,6 +2,7 @@ use yew::prelude::*;
 use yew::html::Scope;
 use web_sys;
 use wasm_bindgen::prelude::*;
+use proc_macro_markdown::md_to_html;
 
 pub struct Post {
     number: usize,
@@ -16,7 +17,7 @@ pub struct Post {
 const LEN: usize = 2;
 const POSTS: [Post; LEN] = 
     [
-        Post {
+    Post {
             number: 3,
             name: "[DE] Chatkontrolle stoppen!",
             prev: "Eine EU Verordnung gegen die Privatsphäre",
@@ -35,10 +36,11 @@ const POSTS: [Post; LEN] =
         number: 1,
         name: "WASM on this site",
         prev: "This site now runs WebAssembly!",
-        desc: "
-            <p style=\"font-weight: 900\">Yes, this site is now running some WebAssembly.</p>
-            <p>All posts are rendered from Rust using WASM. You can see the whole source here: <a href=\"https://github.com/Fl1tzi/tgerber.net\">Fl1tzi/tgerber.net</a></p>
-            "
+        desc: md_to_html!(
+r"
+Every post is rendered in [WebAssembly](https://webassembly.org/). The full source is available at [Fl1tzi/tgerber.net](https://github.com/Fl1tzi/tgerber.net/).
+"
+            )
     },
 ];
 
