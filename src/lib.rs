@@ -2,47 +2,7 @@ use yew::prelude::*;
 use yew::html::Scope;
 use web_sys;
 use wasm_bindgen::prelude::*;
-use proc_macro_markdown::md_to_html;
-
-pub struct Post {
-    number: usize,
-    name: &'static str,
-    prev: &'static str,
-    desc: &'static str,
-}
-
-// the posts which are shown
-// do NOT use 404
-// TODO: make it dynamic
-const LEN: usize = 2;
-const POSTS: [Post; LEN] = 
-    [
-    Post {
-            number: 3,
-            name: "[DE] Chatkontrolle stoppen!",
-            prev: "Eine EU Verordnung gegen die Privatsphäre",
-            desc: "
-                <p>
-                Die EU möchte mithilfe einer digitalen Kommunikationskontrolle die Chats von Benutzern umfassend überwachen.
-                </p>
-                <p>
-                Sämtliche Nachrichten in sozialen Medien sollen hiermit kontrolliert werden und die Ende-zu-Ende Verschlüsselung umgangen werden, sodass Daten gelesen und ausgewertet werden können.
-                </p>
-                <p>
-                Eine gute Übersicht gibts im Artikel vom CCC: <a href=\"https://www.ccc.de/de/updates/2022/eu-kommission-will-alle-chatnachrichten-durchleuchten\">https://www.ccc.de/de/updates/2022/eu-kommission-will-alle-chatnachrichten-durchleuchten</a>
-                "
-        },
-    Post{
-        number: 1,
-        name: "WASM on this site",
-        prev: "This site now runs WebAssembly!",
-        desc: md_to_html!(
-r"
-Every post is rendered in [WebAssembly](https://webassembly.org/). The full source is available at [Fl1tzi/tgerber.net](https://github.com/Fl1tzi/tgerber.net/).
-"
-            )
-    },
-];
+mod post_data;
 
 #[wasm_bindgen]
 extern "C" {
@@ -148,7 +108,7 @@ impl App {
 }
 
 fn get_post_index(n: usize) -> Option<usize> {
-    POSTS.iter().position(|p| p.number == n)
+    post_data::POSTS.iter().position(|p| p.number == n)
 }
 
 impl Component for App {
@@ -168,7 +128,7 @@ impl Component for App {
                 Ok(index) => {
                     let mut found: bool = false;
                     // see if there is a post with that index
-                    for post in POSTS {
+                    for post in post_data::POSTS {
                         if post.number == index {
                             found = true;
                         }
@@ -211,7 +171,7 @@ impl Component for App {
 
         match msg {
             Msg::OpenBoxIndex(n) => {
-                if n >= POSTS.len() {
+                if n >= post_data::POSTS.len() {
                     _ctx
                         .link()
                         .callback(move |_| Msg::OpenError(ErrorType::IndexNotFound))
@@ -219,7 +179,7 @@ impl Component for App {
                     false
                 } else {
                     let location = gloo_utils::window().location();
-                    let post = &POSTS[n];
+                    let post = &post_data::POSTS[n];
                     self.post_prompt_text = post.desc;
                     self.post_prompt_title = post.name;
                     self.post_prompt_hash = post.number;
@@ -237,7 +197,7 @@ impl Component for App {
                 // let post = &POSTS[n];
                 match get_post_index(n) {
                     Some(index) => {
-                        let post = &POSTS[index];
+                        let post = &post_data::POSTS[index];
                         self.post_prompt_text = post.desc;
                         self.post_prompt_title = post.name;
                         self.post_prompt_hash = post.number;
@@ -332,8 +292,8 @@ impl Component for App {
             <div class="card">
                 <p style="font-size: 25px;">{ "[ Matrix ]" }</p>
                 <p>{ "Find me in the Matrix:" }</p>
-                <a class="no-underline" href="https://matrix.to/#/@fl1tzi:server.tgerber.net">
-                <button class="btn green-button">{ "@Fl1tzi:server.tgerber.net" }</button>
+                <a class="no-underline" href="https://matrix.to/#/@fl1tzi:matrix.fl1tzi.com">
+                <button class="btn green-button">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
                 </a>
             </div>
          </div>
@@ -352,7 +312,7 @@ impl Component for App {
             </div>
           </template>
 
-            { for POSTS.iter().enumerate().map(|(index, post)| {
+            { for post_data::POSTS.iter().enumerate().map(|(index, post)| {
                                           html! {
                                               <div class="card" id={ format!("post-{}", post.number) }>
                                                 <div class="inner-card">
