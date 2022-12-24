@@ -1,7 +1,7 @@
-use yew::prelude::*;
-use yew::html::Scope;
-use web_sys;
 use wasm_bindgen::prelude::*;
+use web_sys;
+use yew::html::Scope;
+use yew::prelude::*;
 mod post_data;
 
 #[wasm_bindgen]
@@ -42,13 +42,13 @@ pub enum Msg {
     // why? It's probably more efficient
     OpenBoxIndex(usize),
     OpenError(ErrorType),
-    CloseBox
+    CloseBox,
 }
 
 pub enum ErrorType {
     NotFound,
     ParseError,
-    IndexNotFound
+    IndexNotFound,
 }
 
 impl App {
@@ -57,15 +57,9 @@ impl App {
         console_log!("[  ] Opening post");
         let window = web_sys::window().unwrap();
         let document = window.document().unwrap();
-        let container_all = document
-            .get_element_by_id("container-all")
-            .unwrap();
-        let box_element = document
-            .get_element_by_id("post-popup-box")
-            .unwrap();
-        let box_inner = document
-            .get_element_by_id("post-popup-inner")
-            .unwrap();
+        let container_all = document.get_element_by_id("container-all").unwrap();
+        let box_element = document.get_element_by_id("post-popup-box").unwrap();
+        let box_inner = document.get_element_by_id("post-popup-inner").unwrap();
         container_all
             .set_attribute("style", "display: none;")
             .expect("Could not hide main container");
@@ -80,15 +74,9 @@ impl App {
         console_log!("[X] Closing post");
         let window = web_sys::window().unwrap();
         let document = window.document().unwrap();
-        let container_all = document
-            .get_element_by_id("container-all")
-            .unwrap();
-        let box_element = document
-            .get_element_by_id("post-popup-box")
-            .unwrap();
-        let box_inner = document
-            .get_element_by_id("post-popup-inner")
-            .unwrap();
+        let container_all = document.get_element_by_id("container-all").unwrap();
+        let box_element = document.get_element_by_id("post-popup-box").unwrap();
+        let box_inner = document.get_element_by_id("post-popup-inner").unwrap();
         container_all
             .set_attribute("style", "display: block;")
             .expect("Could not show the main container");
@@ -104,7 +92,6 @@ impl App {
             .expect("Post was not found");
         post_element.scroll_into_view();
     }
-
 }
 
 fn get_post_index(n: usize) -> Option<usize> {
@@ -117,11 +104,8 @@ impl Component for App {
 
     fn create(_ctx: &Context<Self>) -> Self {
         let document = gloo_utils::document();
-        let url = document
-            .url().unwrap();
-        let vals = url
-            .split("/")
-            .collect::<Vec<&str>>();
+        let url = document.url().unwrap();
+        let vals = url.split("/").collect::<Vec<&str>>();
         let index_str = vals[vals.len() - 1];
         if index_str != "" {
             match index_str.parse::<usize>() {
@@ -135,33 +119,29 @@ impl Component for App {
                     }
                     if found == false {
                         // there is no post with that index
-                        _ctx
-                            .link()
+                        _ctx.link()
                             .callback(move |_| Msg::OpenError(ErrorType::NotFound))
                             .emit(());
                     } else {
                         // there is a post with that index
-                        _ctx
-                            .link()
+                        _ctx.link()
                             .callback(move |v: usize| Msg::OpenBox(v))
                             .emit(index);
-                        }
-                    },
-                    Err(_e) => {
-                        _ctx
-                            .link()
-                            .callback(move |_| Msg::OpenError(ErrorType::ParseError))
-                            .emit(());
                     }
+                }
+                Err(_e) => {
+                    _ctx.link()
+                        .callback(move |_| Msg::OpenError(ErrorType::ParseError))
+                        .emit(());
+                }
             }
         }
         Self {
             container: NodeRef::default(),
             post_prompt_text: "",
             post_prompt_title: "",
-            post_prompt_hash: 0
+            post_prompt_hash: 0,
         }
-
     }
 
     fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
@@ -172,8 +152,7 @@ impl Component for App {
         match msg {
             Msg::OpenBoxIndex(n) => {
                 if n >= post_data::POSTS.len() {
-                    _ctx
-                        .link()
+                    _ctx.link()
                         .callback(move |_| Msg::OpenError(ErrorType::IndexNotFound))
                         .emit(());
                     false
@@ -185,9 +164,7 @@ impl Component for App {
                     self.post_prompt_hash = post.number;
                     self.open_box(_ctx.link());
                     location
-                        .set_href(
-                            format!("/#/{}", post.number).as_str()
-                            )
+                        .set_href(format!("/#/{}", post.number).as_str())
                         .unwrap();
                     true
                 }
@@ -203,26 +180,22 @@ impl Component for App {
                         self.post_prompt_hash = post.number;
                         self.open_box(_ctx.link());
                         true
-                    },
+                    }
                     None => {
-                        _ctx
-                            .link()
+                        _ctx.link()
                             .callback(move |_| Msg::OpenError(ErrorType::IndexNotFound))
                             .emit(());
                         false
                     }
                 }
-
-            },
+            }
             Msg::CloseBox => {
                 // console_log!("Closing box");
                 let location = gloo_utils::window().location();
-                location
-                    .set_href("/#/")
-                    .unwrap();
+                location.set_href("/#/").unwrap();
                 self.close_box(_ctx.link());
                 true
-            },
+            }
             Msg::OpenError(e) => {
                 // console_log!("Showing error");
                 self.post_prompt_title = "Error";
@@ -256,7 +229,7 @@ impl Component for App {
                 <span class="close-popup">{ "[X]" }</span>
                 </button>
                 <span style="font-size: 30px;">{ format!("// {} ", &self.post_prompt_title) }</span>
-                <span style="color: grey;">{ 
+                <span style="color: grey;">{
                     format!("#{}", &self.post_prompt_hash) }
                 </span>
                 <br/>
@@ -272,29 +245,41 @@ impl Component for App {
         // socials
         <div class="container grid">
             <div class="logo">
-                <h1 class="section-title">{"Fl1tzi" }</h1>
-                <p style="margin-top: -20px; margin-left: -20px;">{ "kontakt@tgerber.net" }</p>
+                <img src="logo-plain-black.svg" class="section-title-svg"/>
+                <div>
+                    <p class="section-subtitle-name">{ "E-Mail" }</p>
+                    <p class="section-subtitle">{ "kontakt@tgerber.net" }</p>
+                </div>
             </div>
             <br/>
             <div class="card">
-                <img src="assets/GitHub.png" alt="GitHub avatar" class="card-logo"/>
-                // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
-                <p>{ "GitHub:" }</p>
-                <a class="no-underline" href="https://github.com/Fl1tzi">
-                <button class="btn">{ "Fl1tzi" }</button>
-                </a>
+                <div class="inner-card">
+                    <span class="card-title">{ "GitHub" }</span>
+                    <img src="assets/GitHub.png" alt="GitHub avatar" class="card-logo"/>
+                    <br/>
+                    // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
+                    <a class="no-underline" href="https://github.com/Fl1tzi">
+                    <button class="btn">{ "Fl1tzi" }</button>
+                    </a>
+                </div>
             </div>
             <div class="card">
-                <img src="assets/Discord.png" alt="Discord avatar" class="card-logo"/>
-                <p style="margin-top: 0;">{ "Discord:" }</p>
-                <p>{ "Fl1tzi#0001" }</p>
+                <div class="inner-card">
+                    <span class="card-title">{ "Discord" }</span>
+                    <img src="assets/Discord.png" alt="Discord avatar" class="card-logo"/>
+                    <br/>
+                    <p>{ "Fl1tzi#0001" }</p>
+                </div>
             </div>
             <div class="card">
-                <p style="font-size: 25px;">{ "[ Matrix ]" }</p>
-                <p>{ "Find me in the Matrix:" }</p>
-                <a class="no-underline" href="https://matrix.to/#/@fl1tzi:matrix.fl1tzi.com">
-                <button class="btn green-button">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
-                </a>
+                <div class="inner-card">
+                    <span class="card-title">{ "Matrix" }</span>
+                    <span style="font-size: 25px">{ "[ Matrix ]" }</span>
+                    <br/>
+                    <a class="no-underline" href="https://matrix.to/#/@fl1tzi:matrix.fl1tzi.com">
+                    <button class="btn">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
+                    </a>
+                </div>
             </div>
          </div>
 
@@ -316,7 +301,7 @@ impl Component for App {
                                           html! {
                                               <div class="card" id={ format!("post-{}", post.number) }>
                                                 <div class="inner-card">
-                                                <span class="post-num">{ 
+                                                <span class="card-title">{
                                                     format!("#{}",
                                                             post.number
                                                             )
@@ -393,7 +378,7 @@ Grundsätzlich ist ein Auftragsverarbeitungsvertrag mit dem Hoster abzuschließe
             </code>
             </details>
             <p>{ "//" }</p>
-        <p>{ "short version: This site does not use any data from you but GitHub (the hoster) could save some data." }</p> 
+        <p>{ "short version: This site does not use any data from you but GitHub (the hoster) could save some data." }</p>
         <p style="font-size: 12px;">{ "Thank you for visiting!" }</p>
         </footer>
         </div>
@@ -401,7 +386,6 @@ Grundsätzlich ist ein Auftragsverarbeitungsvertrag mit dem Hoster abzuschließe
         </>
         }
     }
-
 }
 
 /* #[function_component]
