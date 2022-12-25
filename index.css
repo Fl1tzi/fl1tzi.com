@@ -5,8 +5,10 @@
 
 :root {
 	--popup-display: none;
+	--green-full: rgba(207, 236, 86, 1);
+	--green-low: rgba(207, 236, 86, 0.3);
+	--green-ultra-low: rgba(207, 236, 86, 0.1)
 }
-
 
 .no-btn-style, .no-btn-style:focus {
 	outline: none;
@@ -20,17 +22,19 @@
 	border: 1px solid grey;
 }
 
+/* POPUP */
+
 .close-popup {
 	font-weight: bold;
 	font-size: 40px;
 	text-align: right;
-	color: black;
+	color: var(--green-full);
 	cursor: pointer;
 	padding: 10px;
 }
 
 .close-popup:hover {
-	color: grey;
+	color: var(--green-low);
 }
 
 .post-popup-box {
@@ -38,57 +42,35 @@
 	z-index: 1;
 	position: fixed;
 	overflow: auto;
-	background-color: #EFEEEE;
+	background-color: black;
 	/*  background: rgb(112,255,202);
 background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rgba(0,0,0,0.8881924020305667) 100%);*/
 	top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 	overflow-y: scroll !important;
 }
 
 .post-popup-inner {
 	display: var(--popup-display);
-	border-radius: 5px;
-	background-color: #EFEEEE;
-
+	background-color: black;
 	margin: 20px auto 20px auto;
-
 	padding: 25px;
 	width: 60%;
-	border: 1px solid black;
+	border: 1px solid var(--green-full);
+	color: white;
 	/* box-shadow: 12px 12px 24px #353535, -12px -12px 24px #474747;*/
 	/* box-shadow:  11px 11px 22px #b2aea9,
 	 -11px -11px 22px #f0ece5;*/
 	overflow: hidden;
 }
 
-.grid {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-pre {
-	overflow-wrap: break-word;
-}
-
-code {
-  background-color: #eee;
-  border: 1px solid #999;
-  border-radius: 10px;
-  display: block;
-  padding: 5px;
-}
 
 .post-title {
-	padding: 15px;
 	color: white;
-	border: 1px solid white;
-	background-color: black;
 	margin-top: -30px;
-	clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 90% 0);
+	/* clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 90% 0); */
 }
 
 .post-prev {
@@ -99,23 +81,24 @@ code {
 
 /* a section title */
 .section-title {
+	color: var(--green-full);
 	margin-top: 0;
 	margin-left: 0px;
 	padding: 10px;
-  box-shadow: inset 0 -0.7em 0 0 rgba(85, 255, 209, 0.3);
+  box-shadow: inset 0 -0.7em 0 0 var(--green-low);
 	width: 250px;
 }
 
 /* a svg as the section title */
 .section-title-svg {
-	padding: 10px;
-	width: 300px;
+	width: 150px;
 }
 
 /* a subtitle for the section */
 .section-subtitle {
-	display: inline-block;
-	border: 1px solid black;
+	display: block;
+	border: 1px solid var(--green-full);
+	color: var(--green-full);
 	padding: 15px;
 }
 
@@ -124,21 +107,12 @@ code {
 	position: relative;
 	display: inline-block;
 	top: 45px;
-  background: black;
-	color: white;
+  background: var(--green-full);
+	color: black;
 	padding: 10px;
 	margin-left: 20px;
 	font-size: 15px;
 	font-weight: bold;
-}
-
-.arrow {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-top: 2px solid #000;
-  border-right: 2px solid #000;
-  transform: rotate(135deg);
 }
 
 @keyframes slideInFromTop {
@@ -163,11 +137,10 @@ code {
 	border-radius: 15px;
 }
 
-.card {
-	padding-left: 20px;
-	border: 1px solid black;
-	border-radius: 10px;
-    display: inline-grid;
+[class*="card-"] {
+	border: 1px solid var(--green-full);
+	color: white;
+  display: inline-grid;
 	/* min-width: 400px;*/
 	max-width: 500px;
 	margin: 10px;
@@ -177,54 +150,88 @@ code {
 	/* animation: 1s ease-in-out 0s 1 slideInFromTop; */
 }
 
-.inner-card {
-	border-left: 2px solid black;
+.inner-social-card {
+	border-left: 2px solid var(--green-full);
 	padding: 20px;
 	margin-left: 10px;
 }
 
-.card-title {
-	color: white;
+
+/* SOCIAL CARDS */
+.card-social {
+	/* base properties */
+	padding-left: 20px;
+}
+
+/* POST CARDS */
+.card-post {
+	/* base properties */
+}
+
+/* bottom card container */
+.bc-container {
+	background: var(--green-low);
+	padding: 10px;
+	border-top: 2px solid var(--green-full);
+}
+
+/* top card container */
+.tc-container {
+	margin-left: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+	border-left: 2px solid var(--green-full);
+}
+
+.c-title {
+	color: black;
 	font-weight: bold;
 	writing-mode:tb-rl;
   transform: rotate(180deg);
   white-space:nowrap;
   display:block;
 	margin-left: -30px;
-	background-color: black;
+	margin-top: 10px;
+	background-color: var(--green-full);
 	padding: 10px 0 10px 0;
   bottom:0;
+	width: 20px;
 }
 
+
 /* logo as a pic */
-.card-logo {
+.c-logo {
 	height: 50px;
 	/* There is always a little margins in these */
-	margin-bottom: -10px;
+	margin-bottom: 10px;
 	border-radius: 50%;
+	filter: invert(100%);
 }
 
 .logo {
-	margin: 30px 30px 0px 30px;
 	padding: 15px;
 	letter-spacing: 2px;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 1;
+	margin-bottom: 10px;
+	background: var(--green-ultra-low);
 }
 
 .vertical-left {
 	transform: rotate(90deg);
 	transform-origin: left top 0;
-	margin-left: 1.5em;
+	margin-left: 3em;
 }
 
 .btn {
 	display: inline-block;
-	border: 1px solid black;
-	background: black;
-	color: rgba(85, 255, 209, 1);
+	border: 0px solid white;
+	background: var(--green-full);
+	color: black;
 	height: 50px;
 	padding: 10px;
-	margin-top: 15px;
-	margin-bottom: 15px;
 	min-width: 100px;
 	max-width: 200px;
 	word-break: break-all;
@@ -240,18 +247,6 @@ code {
 	clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 90% 0);
 }
 
-details > summary {
-  list-style: none;
-}
-details > summary::-webkit-details-marker {
-  display: none;
-}
-
-.green-button {
-	background: rgb(255,255,255);
-	background: linear-gradient(189deg, rgba(255,255,255,0.25672275746235995) 7%, rgba(0,74,24,0.2623249983587185) 100%);
-}
-
 
 @media only screen and (max-width: 800px) {
 	.container {
@@ -260,6 +255,7 @@ details > summary::-webkit-details-marker {
 		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
+		margin-top: 25px;
 	}
 	.post-popup-inner {
 		width: 85%;
@@ -268,11 +264,8 @@ details > summary::-webkit-details-marker {
 
 @media only screen and (min-width: 800px) {
 	.container {
-		border: 1px solid #FFF;
-		box-shadow:  11px 11px 22px #b2aea9,
-		 -11px -11px 22px #f0ece5;
-		border-radius: 50px;
-		margin: 10px;
+		border: 1px solid var(--green-full);
+		margin-top: 20px;
 		margin-left: auto;
 		margin-right: auto;
 		padding: 20px;
@@ -281,24 +274,6 @@ details > summary::-webkit-details-marker {
 	}
 }
 
-.blur {
-	animation: blur 2s ease-in-out;
-}
-
-h1 {
-  font-size: 4.2rem;
-}
-
-
-body {
-  font-family: "SpaceGrotesk";
-  font-size: 18px;
-  background-color: #EFEEEE
-}  
-
-details[open] summary ~ * {
-  animation: sweep .5s ease-in-out;
-}
 
 @keyframes sweep {
   0%    {
@@ -319,17 +294,6 @@ details[open] summary ~ * {
 	filter: blur(0);
   }
 }
-summary {
-	cursor: pointer;
-}
-
-footer {
-	margin-top: 50px;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: left;
-	width: 50%;
-}
 
 /* let us just ignore this */
 .no-underline {
@@ -346,22 +310,78 @@ footer {
 	border-bottom: 0px solid;
 }
 
-a::after {
-    content: '';
-    display: block;
-    height: 3px;
-    background: rgba(85, 255, 209, 0.9);
-    width: 0;
-    transition: width .3s;
-	filter: blur(5px);
-}
+/* ---------- */
+/* OVERWRITES */
+/* ---------- */
 
-a:hover::after {
-    width: 100%;
-	filter: blur(5px)
+a:hover {
+  width: 100%;
+	background: var(--green-low);
 }
 
 a {
-	color: black;
-	display: inline-block;
+	color: white;
+}
+
+summary {
+	cursor: pointer;
+}
+
+footer {
+	color: var(--green-full);
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	width: 50%;
+}
+
+h1 {
+  font-size: 4.2rem;
+}
+
+body {
+  font-family: "SpaceGrotesk";
+  font-size: 18px;
+  background-color: black;
+}  
+
+details[open] summary ~ * {
+  animation: sweep .5s ease-in-out;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+pre {
+	overflow-wrap: break-word;
+}
+
+code {
+  border: 1px solid var(--green-low);
+  border-radius: 10px;
+  display: block;
+  padding: 5px;
+}
+
+/* ---------- */
+/* ATTRIBUTES */
+/* ---------- */
+
+.grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.blur {
+	animation: blur 2s ease-in-out;
+}
+
+.fixed {
+	position: fixed;
 }

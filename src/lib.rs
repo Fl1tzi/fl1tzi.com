@@ -221,7 +221,6 @@ impl Component for App {
         };
         html! {
         <>
-        <hr/>
         // popup
         <div class="post-popup-box" id="post-popup-box">
             <div class="post-popup-inner" id="post-popup-inner">
@@ -229,7 +228,7 @@ impl Component for App {
                 <span class="close-popup">{ "[X]" }</span>
                 </button>
                 <span style="font-size: 30px;">{ format!("// {} ", &self.post_prompt_title) }</span>
-                <span style="color: grey;">{
+                <span style="color: var(--green-full);">{
                     format!("#{}", &self.post_prompt_hash) }
                 </span>
                 <br/>
@@ -239,23 +238,24 @@ impl Component for App {
         // the container for all items that are not the message
         <div id="container-all">
         // verticall FOSS title
-        <div class="vertical-left">
-            <span>{ " FOSS <3 // "}</span>
+        <div class="vertical-left fixed">
+            <hr style="color: var(--green-full);"/>
+            <span style="color: var(--green-full);">{ " FOSS <3 // "}</span>
         </div>
+
         // socials
         <div class="container grid">
             <div class="logo">
-                <img src="logo-plain-black.svg" class="section-title-svg"/>
+                <img src="logo-plain-green.svg" class="section-title-svg"/>
                 <div>
                     <p class="section-subtitle-name">{ "E-Mail" }</p>
                     <p class="section-subtitle">{ "kontakt@tgerber.net" }</p>
                 </div>
             </div>
-            <br/>
-            <div class="card">
-                <div class="inner-card">
-                    <span class="card-title">{ "GitHub" }</span>
-                    <img src="assets/GitHub.png" alt="GitHub avatar" class="card-logo"/>
+            <div class="card-social">
+                <div class="inner-social-card">
+                    <span class="c-title">{ "GitHub" }</span>
+                    <img src="assets/GitHub.png" alt="GitHub avatar" class="c-logo"/>
                     <br/>
                     // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
                     <a class="no-underline" href="https://github.com/Fl1tzi">
@@ -263,21 +263,21 @@ impl Component for App {
                     </a>
                 </div>
             </div>
-            <div class="card">
-                <div class="inner-card">
-                    <span class="card-title">{ "Discord" }</span>
-                    <img src="assets/Discord.png" alt="Discord avatar" class="card-logo"/>
+            <div class="card-social">
+                <div class="inner-social-card">
+                    <span class="c-title">{ "Discord" }</span>
+                    <img src="assets/Discord.png" alt="Discord avatar" class="c-logo"/>
                     <br/>
                     <p>{ "Fl1tzi#0001" }</p>
                 </div>
             </div>
-            <div class="card">
-                <div class="inner-card">
-                    <span class="card-title">{ "Matrix" }</span>
-                    <span style="font-size: 25px">{ "[ Matrix ]" }</span>
+            <div class="card-social">
+                <div class="inner-social-card">
+                    <span class="c-title">{ "Matrix" }</span>
+                    <span style="font-size: 25px;">{ "[ Matrix ]" }</span>
                     <br/>
                     <a class="no-underline" href="https://matrix.to/#/@fl1tzi:matrix.fl1tzi.com">
-                    <button class="btn">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
+                    <button class="btn" style="margin-top: 35px;">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
                     </a>
                 </div>
             </div>
@@ -299,26 +299,28 @@ impl Component for App {
 
             { for post_data::POSTS.iter().enumerate().map(|(index, post)| {
                                           html! {
-                                              <div class="card" id={ format!("post-{}", post.number) }>
-                                                <div class="inner-card">
-                                                <span class="card-title">{
-                                                    format!("#{}",
-                                                            post.number
-                                                            )
-                                                }</span>
-                                              <h3 class="post-title">
-                                                    { post.name }
-                                                  </h3>
-                                                <p class="post-prev">
-                                                    { post.prev }
-                                                  </p>
+                                              <div class="card-post" id={ format!("post-{}", post.number) }>
+                                                <div class="tc-container">
+                                                    <span class="c-title">{
+                                                        format!("#{}",
+                                                                post.number
+                                                                )
+                                                        }
+                                                    </span>
+                                                    <h3 class="post-title">
+                                                        { post.name }
+                                                    </h3>
+                                                    <p class="post-prev">
+                                                        { post.prev }
+                                                    </p>
+                                                </div>
 
-                                                <button onclick={_ctx
-                                                    .link()
-                                                    .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "Open post" }</button>
+                                                <div class="bc-container">
+                                                    <button onclick={_ctx
+                                                        .link()
+                                                        .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "Open post" }</button>
+                                                      </div>
                                                   </div>
-                                                  </div>
-
                                           }
                                       }) }
 
@@ -328,7 +330,7 @@ impl Component for App {
         <footer>
             <details style="margin-top: 40px; font-size: 13px; word-break: break-word;">
                 // I can't get it to center properly
-                <summary style="border: 1px solid black; border-radius: 5px; padding: 10px;">
+                <summary style="border: 1px solid var(--green-full); padding: 10px;">
                 <p>{ "Datenschutzerklärung" }</p>
                 </summary>
                 <code>
