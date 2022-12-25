@@ -87,10 +87,10 @@ impl App {
             .set_attribute("style", "display: none;")
             .expect("Could not hide inner box");
         // scrolling back into the view
-        let post_element = document
-            .get_element_by_id(format!("post-{}", self.post_prompt_hash).as_str())
-            .expect("Post was not found");
-        post_element.scroll_into_view();
+        match document.get_element_by_id(format!("post-{}", self.post_prompt_hash).as_str()) {
+            Some(pe) => pe.scroll_into_view(),
+            None => console_log!("Cannot scroll to post (does not exist)"),
+        }
     }
 }
 
@@ -157,12 +157,12 @@ impl Component for App {
                         .emit(());
                     false
                 } else {
-                    let location = gloo_utils::window().location();
                     let post = &post_data::POSTS[n];
                     self.post_prompt_text = post.desc;
                     self.post_prompt_title = post.name;
                     self.post_prompt_hash = post.number;
                     self.open_box(_ctx.link());
+                    let location = gloo_utils::window().location();
                     location
                         .set_href(format!("/#/{}", post.number).as_str())
                         .unwrap();
