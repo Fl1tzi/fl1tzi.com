@@ -86,7 +86,6 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 	margin-left: 0px;
 	padding: 10px;
   box-shadow: inset 0 -0.7em 0 0 var(--green-low);
-	width: 250px;
 }
 
 /* a svg as the section title */
@@ -211,10 +210,6 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 .logo {
 	padding: 15px;
 	letter-spacing: 2px;
-	grid-column-start: 1;
-	grid-column-end: 3;
-	grid-row-start: 1;
-	grid-row-end: 1;
 	margin-bottom: 10px;
 	background: var(--green-ultra-low);
 }
@@ -375,7 +370,7 @@ code {
 .grid {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .blur {

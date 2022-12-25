@@ -244,7 +244,7 @@ impl Component for App {
         </div>
 
         // socials
-        <div class="container grid">
+        <div class="container">
             <div class="logo">
                 <img src="logo-plain-green.svg" class="section-title-svg"/>
                 <div>
@@ -252,33 +252,35 @@ impl Component for App {
                     <p class="section-subtitle">{ "kontakt@tgerber.net" }</p>
                 </div>
             </div>
-            <div class="card-social">
-                <div class="inner-social-card">
-                    <span class="c-title">{ "GitHub" }</span>
-                    <img src="assets/GitHub.png" alt="GitHub avatar" class="c-logo"/>
-                    <br/>
-                    // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
-                    <a class="no-underline" href="https://github.com/Fl1tzi">
-                    <button class="btn">{ "Fl1tzi" }</button>
-                    </a>
+            <div class="grid">
+                <div class="card-social">
+                    <div class="inner-social-card">
+                        <span class="c-title">{ "GitHub" }</span>
+                        <img src="assets/GitHub.png" alt="GitHub avatar" class="c-logo"/>
+                        <br/>
+                        // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
+                        <a class="no-underline" href="https://github.com/Fl1tzi">
+                        <button class="btn">{ "Fl1tzi" }</button>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="card-social">
-                <div class="inner-social-card">
-                    <span class="c-title">{ "Discord" }</span>
-                    <img src="assets/Discord.png" alt="Discord avatar" class="c-logo"/>
-                    <br/>
-                    <p>{ "Fl1tzi#0001" }</p>
+                <div class="card-social">
+                    <div class="inner-social-card">
+                        <span class="c-title">{ "Discord" }</span>
+                        <img src="assets/Discord.png" alt="Discord avatar" class="c-logo"/>
+                        <br/>
+                        <p>{ "Fl1tzi#0001" }</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card-social">
-                <div class="inner-social-card">
-                    <span class="c-title">{ "Matrix" }</span>
-                    <span style="font-size: 25px;">{ "[ Matrix ]" }</span>
-                    <br/>
-                    <a class="no-underline" href="https://matrix.to/#/@fl1tzi:matrix.fl1tzi.com">
-                    <button class="btn" style="margin-top: 35px;">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
-                    </a>
+                <div class="card-social">
+                    <div class="inner-social-card">
+                        <span class="c-title">{ "Matrix" }</span>
+                        <span style="font-size: 25px;">{ "[ Matrix ]" }</span>
+                        <br/>
+                        <a class="no-underline" href="https://matrix.to/#/@fl1tzi:matrix.fl1tzi.com">
+                        <button class="btn" style="margin-top: 35px;">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
+                        </a>
+                    </div>
                 </div>
             </div>
          </div>
@@ -288,43 +290,36 @@ impl Component for App {
                 <h1 class="section-title">{ "Posts" }</h1>
             </div>
 
-         <template id="post-template">
-            <div class="card">
-                <details open=true>
-                <summary style="margin: 5px;" class="insert-title"></summary>
-                <div class="insert-div"></div>
-                </details>
-            </div>
-          </template>
+            <div class="grid">
+                { for post_data::POSTS.iter().enumerate().map(|(index, post)| {
+                                              html! {
+                                                  <div class="card-post" id={ format!("post-{}", post.number) }>
+                                                    <div class="tc-container">
+                                                        <span class="c-title">{
+                                                            format!("#{}",
+                                                                    post.number
+                                                                    )
+                                                            }
+                                                        </span>
+                                                        <h3 class="post-title">
+                                                            { post.name }
+                                                        </h3>
+                                                        <p class="post-prev">
+                                                            { post.prev }
+                                                        </p>
+                                                    </div>
 
-            { for post_data::POSTS.iter().enumerate().map(|(index, post)| {
-                                          html! {
-                                              <div class="card-post" id={ format!("post-{}", post.number) }>
-                                                <div class="tc-container">
-                                                    <span class="c-title">{
-                                                        format!("#{}",
-                                                                post.number
-                                                                )
-                                                        }
-                                                    </span>
-                                                    <h3 class="post-title">
-                                                        { post.name }
-                                                    </h3>
-                                                    <p class="post-prev">
-                                                        { post.prev }
-                                                    </p>
-                                                </div>
-
-                                                <div class="bc-container">
-                                                    <button onclick={_ctx
-                                                        .link()
-                                                        .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "Open post" }</button>
+                                                    <div class="bc-container">
+                                                        <button onclick={_ctx
+                                                            .link()
+                                                            .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "Open post" }</button>
+                                                          </div>
                                                       </div>
-                                                  </div>
-                                          }
-                                      }) }
+                                              }
+                                          }) }
 
-          </div>
+            </div>
+        </div>
 
         <div>
         <footer>
