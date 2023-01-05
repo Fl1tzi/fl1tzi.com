@@ -237,12 +237,6 @@ impl Component for App {
         </div>
         // the container for all items that are not the message
         <div id="container-all">
-        // verticall FOSS title
-        <div class="vertical-left fixed">
-            <hr style="color: var(--color-full);"/>
-            <span style="color: var(--color-full);">{ " FOSS <3 // "}</span>
-        </div>
-
         // socials
         <div class="container">
             <div class="logo">
