@@ -45,8 +45,6 @@ Das soll übrigens 2016 maßgeblich zu Trumps Wahlsieg geholfen haben. Also zeig
 - [Datenschutzerklärung Whatsapp](https://www.whatsapp.com/legal/privacy-policy-eea)
 - [Datenschutzerklärung Signal](https://signal.org/legal/)
 
----
-
 ### Whatsapp
 
 #### Telefonnummer, Profilstatus, Geburtsdatum, Anzeigennamen, Profilbild:
@@ -100,8 +98,6 @@ Meta kann alleine mit diesen Informationen wertvolle Daten über dich und über 
 
 Auch hier wieder: Wir kennen die genauen technischen Implementierungen nicht und können keine genauen Aussagen darüber machen und können den Versprechen deswegen nicht trauen.
 
----
-
 ### Signal
 
 Als erstes: Diese Datenschutzerklärung ist viel kürzer und übersichtlicher für den Nutzer.
@@ -114,7 +110,7 @@ Signal nutzt eine Ende-zu-Ende-Verschlüsselung für diese Daten.
 
 #### Metadaten:
 
-<p style=\"color: green;\">Werden teilweise verschlüsselt und nur in geringer benötigter Menge gespeichert.</p>
+<p style=\"color: yellow;\">Werden teilweise verschlüsselt und nur in geringer benötigter Menge gespeichert.</p>
 
 Wie gesagt, der Programmcode ist offen, jeder kann genau nachgucken was gespeichert wird.
 
@@ -132,7 +128,7 @@ Signal speichert Nachrichten temporär falls der Nutzer nicht erreichbar ist.
 
 <p style=\"color: green;\">keine persönlichen Daten</p>
 
-Dieses System basiert auf dem [Hashing](https://de.wikipedia.org/wiki/Hash) von einer Telefonnumer, welche anschließend in einer [Software Guard Extension](https://en.wikipedia.org/wiki/Software_Guard_Extensions) abgeglichen wird.
+Dieses System basiert auf dem [Hashing](https://de.wikipedia.org/wiki/Hash) von einer Telefonnummer, welche anschließend in einer [Software Guard Extension](https://en.wikipedia.org/wiki/Software_Guard_Extensions) abgeglichen wird.
 
 #### Externe:
 
@@ -141,8 +137,6 @@ Signal macht es uns sehr leicht diese einzusehen:
 - <p style=\"color: grey;\">Behörden (benötigt)</p>
             
 über welche Signal sehr transparent ist: [siehe hier](https://signal.org/bigbrother/)
-
----
 
 ## Offenheit ist der Schlüssel zu einer sicheren Kommunikation
 

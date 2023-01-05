@@ -228,7 +228,7 @@ impl Component for App {
                 <span class="close-popup">{ "[X]" }</span>
                 </button>
                 <span style="font-size: 30px;">{ format!("// {} ", &self.post_prompt_title) }</span>
-                <span style="color: var(--green-full);">{
+                <span style="color: var(--color-full);">{
                     format!("#{}", &self.post_prompt_hash) }
                 </span>
                 <br/>
@@ -239,22 +239,34 @@ impl Component for App {
         <div id="container-all">
         // verticall FOSS title
         <div class="vertical-left fixed">
-            <hr style="color: var(--green-full);"/>
-            <span style="color: var(--green-full);">{ " FOSS <3 // "}</span>
+            <hr style="color: var(--color-full);"/>
+            <span style="color: var(--color-full);">{ " FOSS <3 // "}</span>
         </div>
 
         // socials
         <div class="container">
             <div class="logo">
-                <img src="logo-plain-green.svg" class="section-title-svg"/>
+                <h1 class="section-title">{ "Fl1tzi" }</h1>
+
                 <div>
-                    <p class="section-subtitle-name">{ "E-Mail" }</p>
-                    <p class="section-subtitle">{ "kontakt@tgerber.net" }</p>
+                    <p class="section-subtitle-name">{ "Information" }</p>
+                    <p class="section-subtitle">{ "These are ways to contact me. Fastest way is E-Mail or Matrix." }</p>
                 </div>
             </div>
             <div class="grid">
                 <div class="card-social">
-                    <div class="inner-social-card">
+                    <div class="inner-social">
+                        <span class="c-title">{ "E-Mail" }</span>
+                        <img src="assets/mail-fill.svg" alt="mail icon" class="c-logo"/>
+                        <br/>
+                        // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
+                        <a class="no-underline" href="mailto:kontakt@tgerber.net">
+                        <button class="btn">{ "kontakt@tgerber.net" }</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-social">
+                    <div class="inner-social">
                         <span class="c-title">{ "GitHub" }</span>
                         <img src="assets/GitHub.png" alt="GitHub avatar" class="c-logo"/>
                         <br/>
@@ -265,7 +277,7 @@ impl Component for App {
                     </div>
                 </div>
                 <div class="card-social">
-                    <div class="inner-social-card">
+                    <div class="inner-social">
                         <span class="c-title">{ "Discord" }</span>
                         <img src="assets/Discord.png" alt="Discord avatar" class="c-logo"/>
                         <br/>
@@ -273,7 +285,7 @@ impl Component for App {
                     </div>
                 </div>
                 <div class="card-social">
-                    <div class="inner-social-card">
+                    <div class="inner-social">
                         <span class="c-title">{ "Matrix" }</span>
                         <span style="font-size: 25px;">{ "[ Matrix ]" }</span>
                         <br/>
@@ -325,7 +337,7 @@ impl Component for App {
         <footer>
             <details style="margin-top: 40px; font-size: 13px; word-break: break-word;">
                 // I can't get it to center properly
-                <summary style="border: 1px solid var(--green-full); padding: 10px;">
+                <summary style="border: 1px solid var(--color-full); padding: 10px;">
                 <p>{ "Datenschutzerklärung" }</p>
                 </summary>
                 <code>
