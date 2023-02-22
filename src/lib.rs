@@ -243,48 +243,54 @@ impl Component for App {
                 <h1 class="section-title">{ "Fl1tzi" }</h1>
 
                 <div>
-                    <p class="section-subtitle-name">{ "Information" }</p>
-                    <p class="section-subtitle">{ "These are ways to contact me. Fastest way is E-Mail or Matrix." }</p>
+                    <p class="section-subtitle"><span class="section-subtitle-name">{ "Information" }</span>{ "These are ways to contact me. Fastest way is E-Mail or Matrix." }</p>
                 </div>
             </div>
             <div class="grid">
                 <div class="card-social">
                     <div class="inner-social">
+                        <img src="assets/mail-fill.svg" alt="mail icon" class="c-logo invert"/>
                         <span class="c-title">{ "E-Mail" }</span>
-                        <img src="assets/mail-fill.svg" alt="mail icon" class="c-logo"/>
-                        <br/>
                         // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
+                    </div>
+                    <div class="c-spacer">
                         <a class="no-underline" href="mailto:kontakt@tgerber.net">
-                        <button class="btn">{ "kontakt@tgerber.net" }</button>
+                        <button class="btn">{ "< Open" }</button>
                         </a>
                     </div>
                 </div>
                 <div class="card-social">
                     <div class="inner-social">
-                        <span class="c-title">{ "GitHub" }</span>
-                        <img src="assets/GitHub.png" alt="GitHub avatar" class="c-logo"/>
-                        <br/>
+                        <img src="assets/codeberg-icon.svg" alt="Codeberg icon" class="c-logo"/>
+                        <span class="c-title">{ "Codeberg" }</span>
                         // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
+                    </div>
+                    <div class="c-spacer">
+                        <a class="no-underline" href="https://codeberg.org/Fl1tzi">
+                        <button class="btn">{ "< Open" }</button>
+                    </a>
+                    </div>
+                </div>
+                <div class="card-social">
+                    <div class="inner-social">
+                        <img src="assets/GitHub.png" alt="GitHub avatar" class="c-logo invert"/>
+                        <span class="c-title">{ "GitHub" }</span>
+                        // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
+                    </div>
+                    <div class="c-spacer">
                         <a class="no-underline" href="https://github.com/Fl1tzi">
-                        <button class="btn">{ "Fl1tzi" }</button>
-                        </a>
+                        <button class="btn">{ "< Open" }</button>
+                    </a>
                     </div>
                 </div>
                 <div class="card-social">
                     <div class="inner-social">
-                        <span class="c-title">{ "Discord" }</span>
-                        <img src="assets/Discord.png" alt="Discord avatar" class="c-logo"/>
-                        <br/>
-                        <p>{ "Fl1tzi#0001" }</p>
-                    </div>
-                </div>
-                <div class="card-social">
-                    <div class="inner-social">
-                        <span class="c-title">{ "Matrix" }</span>
                         <span style="font-size: 25px;">{ "[ Matrix ]" }</span>
-                        <br/>
+                        <span class="c-title">{ "Matrix" }</span>
+                    </div>
+                    <div class="c-spacer">
                         <a class="no-underline" href="https://matrix.to/#/@fl1tzi:matrix.fl1tzi.com">
-                        <button class="btn" style="margin-top: 35px;">{ "@Fl1tzi:matrix.fl1tzi.com" }</button>
+                        <button class="btn">{ "< Open" }</button>
                         </a>
                     </div>
                 </div>
@@ -318,7 +324,7 @@ impl Component for App {
                                                     <div class="bc-container">
                                                         <button onclick={_ctx
                                                             .link()
-                                                            .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "Open post" }</button>
+                                                            .callback(move |_| Msg::OpenBoxIndex(index))} class="btn">{ "< Open" }</button>
                                                           </div>
                                                       </div>
                                               }

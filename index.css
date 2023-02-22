@@ -60,8 +60,6 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 	margin: 20px auto 20px auto;
 	padding: 25px;
 	width: 60%;
-	border: 2px solid var(--color-full);
-	border-radius: 5px;
 	color: white;
 	/* box-shadow: 12px 12px 24px #353535, -12px -12px 24px #474747;*/
 	/* box-shadow:  11px 11px 22px #b2aea9,
@@ -71,8 +69,8 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 
 
 .post-title {
+	margin: 0;
 	color: white;
-	margin-top: -30px;
 	/* clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 90% 0); */
 }
 
@@ -86,35 +84,30 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 .section-title {
 	color: var(--highlight-full);
 	margin: 0;
-	padding: 10px;
 }
 
 /* a svg as the section title */
 .section-title-svg {
-	width: 150px;
+	width: 100px;
 }
 
 /* a subtitle for the section */
 .section-subtitle {
 	display: block;
-	border: 1px solid var(--color-full);
 	color: var(--color-full);
-	background: var(--color-ultra-low);
-	padding: 15px;
 }
 
 /* a name for the subtitle field (small text in border) */
 .section-subtitle-name {
 	position: relative;
 	display: inline-block;
-	top: 45px;
-  background: var(--color-full);
-	color: black;
-	padding: 10px;
-	margin-left: 20px;
+	/* background: var(--color-full);*/
+	border: 1px solid var(--color-full);
+	color: var(--color-full);
+	padding: 5px;
+	margin-right: 10px;
 	font-size: 15px;
 	font-weight: bold;
-	border-radius: 5px;
 }
 
 @keyframes slideInFromTop {
@@ -140,10 +133,9 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 }
 
 [class*="card-"] {
-	border: 1px solid var(--color-full);
-	border-radius: 5px;
+	border: 1px solid var(--color-low);
 	color: white;
-  display: inline-grid;
+	display: inline-grid;
 	/* min-width: 400px;*/
 	max-width: 500px;
 	margin: 10px;
@@ -160,10 +152,11 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 }
 
 .inner-social {
+	padding-top: 15px;
 	margin-left: 20px;
 	padding-right: 20px;
 	padding-left: 20px;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	border-left: 2px solid var(--color-full);
 }
 
@@ -188,28 +181,27 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 }
 
 .c-title {
-	color: black;
+	color: white;
 	font-weight: bold;
-	writing-mode:tb-rl;
-  transform: rotate(180deg);
-  white-space:nowrap;
-  display:block;
-	margin-left: -30px;
-	margin-top: 10px;
-	background-color: var(--color-full);
+	white-space:nowrap;
+	display:block;
 	padding: 10px 0 10px 0;
-  bottom:0;
-	width: 20px;
 	border-radius: 5px;
+}
+
+.c-spacer {
+	margin: 10px;
 }
 
 
 /* logo as a pic */
 .c-logo {
-	height: 50px;
+	height: 30px;
 	/* There is always a little margins in these */
-	margin-bottom: 10px;
 	border-radius: 50%;
+}
+
+.invert {
 	filter: invert(100%);
 }
 
@@ -230,11 +222,10 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 .btn {
 	display: inline-block;
 	border: 0px solid black;
-	border-radius: 5px;
 	background: var(--color-full);
 	color: black;
 	padding: 10px;
-	min-height: 50px;
+	height: 45px;
 	min-width: 125px;
 	word-break: break-all;
 	font-family: SpaceGrotesk;
@@ -264,8 +255,7 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 
 @media only screen and (min-width: 800px) {
 	.container {
-		border: 3px solid var(--secondary-full);
-		border-radius: 5px;
+		border: 2px solid var(--color-low);
 		margin-top: 50px;
 		margin-left: auto;
 		margin-right: auto;
@@ -323,22 +313,21 @@ hr:not([class]) {
 }
 
 h2:not([class]) {
-	color: black;
-	background: var(--secondary-full);
+	border: 1px solid var(--color-low);
 	padding: 7px;
 	border-radius: 2.5px;
 }
 
 h3:not([class]) {
-	color: var(--secondary-full);
-	border: 2px solid var(--secondary-full);
+	border-bottom: 8px solid var(--color-low);
 	padding: 5px;
-	border-radius: 2.5px;
 	display: inline-block;
 }
 
 h4:not([class]) {
-	border-top: 2px solid var(--color-low);
+	padding-left: 10px;
+	border-left: 0.5px solid var(--color-low);
+	border-top: 0.5px solid var(--color-low);
 	padding-top: 5px;
 }
 
