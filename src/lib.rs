@@ -340,54 +340,29 @@ impl Component for App {
                 <summary style="border: 1px solid var(--color-full); padding: 10px;">
                 <p>{ "Datenschutzerklärung" }</p>
                 </summary>
-                <code>
-                <p>{"
-                Kontakt: kontakt@tgerber.net
-                "}</p>
-                <p>{"
-                Ich verwende für diese Webseite einen Webhosting-Dienst von GitHub Inc. (GitHub Pages).Unser Hoster erhebt in sog. Logfiles folgende Daten, die Ihr Browser übermittelt:
+                <code style="white-space: pre-wrap;">
+                {r"
+- Datenschutzerklärung -
 
-IP-Adresse, die Adresse der vorher besuchten Website (Referer Anfrage-Header), Datum und Uhrzeit der Anfrage, Zeitzonendifferenz zur Greenwich Mean Time, Inhalt der Anforderung, HTTP-Statuscode, übertragene Datenmenge, Website, von der die Anforderung kommt und Informationen zu Browser und Betriebssystem.
-                "}</p>
+-- Kontakt --
 
-                <p>{"Wir setzen für die Zurverfügungstellung unserer Website folgenden Hoster ein:"}</p>
+Verantwortlicher im Sinne der Datenschutz-Grundverordnung, sonstiger in den Mitgliedsstaaten der Europäischen Union geltenen Datenschutzgesetze und anderer Bestimmungen mit datenschutzrechtlichem Charakter ist:
 
-                <em><p>{"
-                GitHub Inc.:
-                88 Colin P. Kelly Jr. St.
-                San Francisco
-                CA 94107 USA
-                "}</p></em>
+kontakt@tgerber.net
 
-                <p>{ "Dieser ist Empfänger Ihrer personenbezogenen Daten. Dies entspricht unserem berechtigten Interesse im Sinne des Art. 6 Abs. 1 S. 1 lit. f DSGVO, selbst keinen Server in unseren Räumlichkeiten vorhalten zu müssen. Serverstandort ist USA." }</p>
-                <p>{"
-                Es erfolgt kein Tracking und wir haben auf diese Daten keinen direkten Zugriff, sondern erhalten lediglich eine anonymisierte, statistische Zusammenfassung. Diese beinhaltet die Adresse der vorher besuchten Seite, die Häufigkeit der jeweils aufgerufenen Seiten und die Anzahl eindeutiger Besucher. Diese Daten führen wir nicht mit anderen Daten zusammen.
-                "}</p>
+-- Daten beim Aufruf der Website --
 
-                <p>{"
-                Weitere Informationen zu Widerspruchs- und Beseitigungsmöglichkeiten gegenüber GitHub finden Sie unter: https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-privacy-statement#github-pages
-                    "}</p>
+Daten, welche beim Aufruf verarbeitet werden und in sog. Logfiles gespeichert werden, bis es zur automatisierten Löschung kommt:
 
-                    <p>{"
-                    GitHub hat Compliance-Maßnahmen für internationale Datenübermittlungen umgesetzt. Diese gelten für alle weltweiten Aktivitäten, bei denen GitHub personenbezogene Daten von natürlichen Personen in der EU verarbeitet. Diese Maßnahmen basieren auf den EU-Standardvertragsklauseln (SCCs). Weitere Informationen finden Sie unter: https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-data-protection-addendum#attachment-1–the-standard-contractual-clauses-processors
-                    "}</p>
+- IP-Adresse
+- Datum- und Uhrzeit der Anfrage
 
-                    <p>{ "Rechtliche Hinweise" }</p>
-
-                    <p>{"
-Grundsätzlich ist ein Auftragsverarbeitungsvertrag mit dem Hoster abzuschließen. Das bayerische Landesamt für Datenschutzaufsicht hat für das Hosting rein statischer Websites eine Ausnahme gemacht. Für den Fall, dass die Webseite der Selbstdarstellung dient, z.B. von Vereinen oder Kleinunternehmen, keine personenbezogenen Daten an den Betreiber fließen und kein Tracking stattfindet, liegt keine Auftragsverarbeitung vor. Weiter heißt es: „Die Tatsache, dass auch beim Hosting von statischen Webseiten zwangsläufig IP-Adressen, d.h. personenbezogene Daten, verarbeitet werden müssen, führt nicht zur Annahme einer Auftragsverarbeitung. Das wäre nicht sachgerecht. Die (kurzfristige) IP-Adressenspeicherung ist vielmehr noch der TK-Zugangsvermittlung des Website-Hosters nach dem TKG zuzurechnen und dient in erster Linie Sicherheitszwecken des Hosters.“ (https://www.lda.bayern.de/media/veroeffentlichungen/FAQ_Hosting_keine_Auftragsverarbeitung.pdf) Wir gehen davon aus, dass diese Ausnahme auf GitHub Pages anzuwenden ist.
-
-                    "}</p>
-
-                <p>{"
-                GitHub Datenverarbeitungsbedingungen: https://docs.github.com/en/site-policy/privacy-policies/github-data-protection-agreement"}</p>
-                <p>{"
-                GitHub Datenschutzerklärung: https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement?tid=134222759
-                "}</p>
+Rechtsgrundlage für die Verarbeitung dieser Daten sind berechtigte Interessen gemäß Art. 6 Abs. 1 UAbs. 1 Buchstabe f) DSGVO, um unsere Server vor Angriffen zu schützen. In keinem Fall verwenden wir die erhobenen Daten zu dem Zweck, Rückschlüsse auf Ihre Person zu ziehen.
+"}
             </code>
             </details>
             <p>{ "//" }</p>
-        <p>{ "short version: This site does not use any data from you but GitHub (the hoster) could save some data." }</p>
+        <p>{ "TL;DR: I just need your IP to protect myself from attacks." }</p>
         <p style="font-size: 12px;">{ "Thank you for visiting!" }</p>
         </footer>
         </div>
