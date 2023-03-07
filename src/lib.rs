@@ -179,6 +179,10 @@ impl Component for App {
                         self.post_prompt_title = post.name;
                         self.post_prompt_hash = post.number;
                         self.open_box(_ctx.link());
+                        let location = gloo_utils::window().location();
+                        location
+                            .set_href(format!("/#/{}", post.number).as_str())
+                            .unwrap();
                         true
                     }
                     None => {
@@ -197,10 +201,9 @@ impl Component for App {
                 true
             }
             Msg::OpenError(e) => {
-                // console_log!("Showing error");
-                self.post_prompt_title = "Error";
-                // I will probably shoot me into my own foot with that lol
-                self.post_prompt_hash = 404;
+                let post = &post_data::POSTS[get_post_index(404).unwrap()];
+                self.post_prompt_title = post.name;
+                self.post_prompt_hash = post.number;
                 self.post_prompt_text = match e {
                     ErrorType::NotFound => "<p>The post you were searching for was not found.</p>",
                     ErrorType::ParseError => "<p>Search value not allowed. The argument has to be a number being positive.</p>",
@@ -304,7 +307,7 @@ impl Component for App {
             </div>
 
             <div class="grid">
-                { for post_data::POSTS.iter().enumerate().map(|(index, post)| {
+                { for post_data::POSTS.iter().filter(|post| post.visible == true).enumerate().map(|(index, post)| {
                                               html! {
                                                   <div class="card-post" id={ format!("post-{}", post.number) }>
                                                     <div class="tc-container">
@@ -336,35 +339,11 @@ impl Component for App {
 
         <div>
         <footer>
-            <details style="margin-top: 40px; font-size: 13px; word-break: break-word;">
-                // I can't get it to center properly
-                <summary style="border: 1px solid var(--color-full); padding: 10px;">
-                <p>{ "Datenschutzerklärung" }</p>
-                </summary>
-                <code style="white-space: pre-wrap;">
-                {r"
-- Datenschutzerklärung -
-
--- Kontakt --
-
-Verantwortlicher im Sinne der Datenschutz-Grundverordnung, sonstiger in den Mitgliedsstaaten der Europäischen Union geltenen Datenschutzgesetze und anderer Bestimmungen mit datenschutzrechtlichem Charakter ist:
-
-kontakt@tgerber.net
-
--- Daten beim Aufruf der Website --
-
-Daten, welche beim Aufruf verarbeitet werden und in sog. Logfiles gespeichert werden, bis es zur automatisierten Löschung kommt:
-
-- IP-Adresse
-- Datum- und Uhrzeit der Anfrage
-
-Rechtsgrundlage für die Verarbeitung dieser Daten sind berechtigte Interessen gemäß Art. 6 Abs. 1 UAbs. 1 Buchstabe f) DSGVO, um unsere Server vor Angriffen zu schützen. In keinem Fall verwenden wir die erhobenen Daten zu dem Zweck, Rückschlüsse auf Ihre Person zu ziehen.
-"}
-            </code>
-            </details>
-            <p>{ "//" }</p>
-        <p>{ "TL;DR: I just need your IP to protect myself from attacks." }</p>
-        <p style="font-size: 12px;">{ "Thank you for visiting!" }</p>
+            <div class="footer-nav">
+                <div><p>{ "//" }</p></div>
+                <div><p>{ "LICENSE: MIT" }</p></div>
+                <div><p style="cursor: pointer;" onclick={_ctx.link().callback(move |_| Msg::OpenBox(0))}>{ "Datenschutzerklärung" }</p></div>
+            </div>
         </footer>
         </div>
         </div>

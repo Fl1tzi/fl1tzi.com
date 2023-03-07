@@ -10,6 +10,8 @@
 	--color-ultra-low: rgba(209, 207, 226, 0.1);
 	--highlight-full: rgba(212, 175, 185, 1);
 	--secondary-full: rgba(200, 193, 250, 1);
+	--width: 75%;
+	--max-width: 1500px;
 }
 
 .website-title {
@@ -267,8 +269,8 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 		margin-top: 50px;
 		margin-left: auto;
 		margin-right: auto;
-		max-width: 1500px;
-		width: 75%;
+		max-width: var(--max-width);
+		width: var(--width);
 	}
 }
 
@@ -344,11 +346,21 @@ summary {
 
 footer {
 	color: var(--color-full);
-	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
-	width: 50%;
+	width: var(--width);
+	max-width: var(--max-width);
+}
+
+.footer-nav {
+    overflow: hidden;
+}
+
+.footer-nav div {
+    float: left;
+    text-align: center;
+    padding-right: 30px;
 }
 
 h1 {
@@ -362,15 +374,15 @@ body {
   margin: 0;
 }  
 
-details[open] summary ~ * {
-  animation: sweep .5s ease-in-out;
-}
-
 details > summary {
   list-style: none;
 }
 details > summary::-webkit-details-marker {
   display: none;
+}
+
+details {
+    position: absolute;
 }
 
 pre {
