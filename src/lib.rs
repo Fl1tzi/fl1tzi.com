@@ -237,10 +237,11 @@ impl Component for App {
         </div>
         // the container for all items that are not the message
         <div id="container-all">
+        <h1 class="website-title">{ "Fl1tzi" }</h1>
         // socials
         <div class="container">
             <div class="logo">
-                <h1 class="section-title">{ "Fl1tzi" }</h1>
+                <h1 class="section-title">{ "Contact" }</h1>
 
                 <div>
                     <p class="section-subtitle"><span class="section-subtitle-name">{ "Information" }</span>{ "These are ways to contact me. Fastest way is E-Mail or Matrix." }</p>

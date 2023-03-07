@@ -12,6 +12,13 @@
 	--secondary-full: rgba(200, 193, 250, 1);
 }
 
+.website-title {
+    color: var(--highlight-full);
+    margin-top: 0;
+    text-align: center;
+    background-image: linear-gradient(var(--color-low), black);
+}
+
 .no-btn-style, .no-btn-style:focus {
 	outline: none;
 	background: transparent;
@@ -82,6 +89,7 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 
 /* a section title */
 .section-title {
+	font-size: 45px;
 	color: var(--highlight-full);
 	margin: 0;
 }
@@ -206,8 +214,8 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 }
 
 .logo {
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	margin-bottom: 10px;
 	background: var(--color-ultra-low);
 	border-bottom: 10px solid var(--color-low);
@@ -259,7 +267,6 @@ background: linear-gradient(171deg, rgba(112,255,202,0.14183671689937138) 7%, rg
 		margin-top: 50px;
 		margin-left: auto;
 		margin-right: auto;
-		padding: 20px;
 		max-width: 1500px;
 		width: 75%;
 	}
@@ -352,6 +359,7 @@ body {
   font-family: "SpaceGrotesk";
   font-size: 18px;
   background-color: black;
+  margin: 0;
 }  
 
 details[open] summary ~ * {
@@ -389,6 +397,8 @@ blockquote {
 
 .grid {
   display: grid;
+  margin: 5px;
+  padding: 5px;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
