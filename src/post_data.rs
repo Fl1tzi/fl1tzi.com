@@ -37,20 +37,20 @@ This site is rendered in [WebAssembly](https://webassembly.org/). The full sourc
         name: "Datenschutzerklärung",
         prev: "",
         desc: md_to_html!(r"
-## Kontakt
+**TL;DR**
 
-Verantwortlicher im Sinne der Datenschutz-Grundverordnung, sonstiger in den Mitgliedsstaaten der Europäischen Union geltenen Datenschutzgesetze und anderer Bestimmungen mit datenschutzrechtlichem Charakter ist:
+```conf
+access_log off;
+error_log off;
+```
+
+## Kontakt
 
 kontakt@tgerber.net
 
 ## Daten beim Aufruf der Website
 
-Daten, welche beim Aufruf verarbeitet werden und in sog. Logfiles gespeichert werden, bis es zur automatisierten Löschung kommt:
-
-- IP-Adresse
-- Datum- und Uhrzeit der Anfrage
-
-Rechtsgrundlage für die Verarbeitung dieser Daten sind berechtigte Interessen gemäß Art. 6 Abs. 1 UAbs. 1 Buchstabe f) DSGVO, um unsere Server vor Angriffen zu schützen. In keinem Fall verwenden wir die erhobenen Daten zu dem Zweck, Rückschlüsse auf Ihre Person zu ziehen.
+Wenn Sie diese Seite aufrufen, werden keine Daten von Ihnen gespeichert.
 ")
     }
     ];
