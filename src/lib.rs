@@ -255,7 +255,6 @@ impl Component for App {
                     <div class="inner-social">
                         <img src="assets/mail-fill.svg" alt="mail icon" class="c-logo invert"/>
                         <span class="c-title">{ "E-Mail" }</span>
-                        // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
                     </div>
                     <div class="c-spacer">
                         <a class="no-underline" href="mailto:kontakt@tgerber.net">
@@ -267,7 +266,6 @@ impl Component for App {
                     <div class="inner-social">
                         <img src="assets/codeberg-icon.svg" alt="Codeberg icon" class="c-logo"/>
                         <span class="c-title">{ "Codeberg" }</span>
-                        // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
                     </div>
                     <div class="c-spacer">
                         <a class="no-underline" href="https://codeberg.org/Fl1tzi">
@@ -279,7 +277,6 @@ impl Component for App {
                     <div class="inner-social">
                         <img src="assets/GitHub.png" alt="GitHub avatar" class="c-logo invert"/>
                         <span class="c-title">{ "GitHub" }</span>
-                        // <img src="http://ghchart.rshah.org/Fl1tzi" alt="Github chart" style="margin-top: 20px; margin-bottom: 10px; width: 90%;"/>
                     </div>
                     <div class="c-spacer">
                         <a class="no-underline" href="https://github.com/Fl1tzi">
